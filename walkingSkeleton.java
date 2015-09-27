@@ -13,7 +13,7 @@ public class walkingSkeleton{
 		int width = screenSize.width * 2 / 3;
 
 		//initialize frame
-		JFrame mainFrame = new JFrame("Cemetary Management System");
+		JFrame mainFrame = new JFrame("Cemetery Management System");
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainFrame.setMinimumSize(new Dimension(600,400));
 		
