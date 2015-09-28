@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="H2 - cemetery" uuid="8dbe5488-fdca-45a8-b0c2-5c5a47db93e1">
+    <database-info product="H2" version="1.3.176 (2014-04-05)" jdbc-version="4.0" driver-name="H2 JDBC Driver" driver-version="1.3.176 (2014-04-05)">
+      <identifier-quote-string>&quot;</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="upper" quoted-identifiers="exact"/>
+    <schema name="PUBLIC" catalog="CEMETERY"/>
+    <table name="PLOTS" schema="PUBLIC" catalog="CEMETERY" type="TABLE">
+      <column name="INTERNMENT_NO" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="NAME_OF_DECEASED" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+    </table>
+  </data-source>
+</component>
