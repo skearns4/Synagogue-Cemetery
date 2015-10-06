@@ -1,0 +1,14 @@
+BEGIN TRANSACTION;
+CREATE TABLE "SAMPLE" (
+	`fname`	TEXT,
+	`lname`	TEXT,
+	`id`	NUMERIC
+);
+INSERT INTO `SAMPLE` VALUES ('John','Smith',1);
+INSERT INTO `SAMPLE` VALUES ('Mary','Sanders',2);
+INSERT INTO `SAMPLE` VALUES ('Bill','Meyers',3);
+INSERT INTO `SAMPLE` VALUES ('Phil','Anderson',4);
+INSERT INTO `SAMPLE` VALUES ('Mike','Harrison',5);
+INSERT INTO `SAMPLE` VALUES ('Jacob','Wheeler',6);
+INSERT INTO `SAMPLE` VALUES ('Kelly','Wilson',7);
+COMMIT;
