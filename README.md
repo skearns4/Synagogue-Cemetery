@@ -2,7 +2,8 @@
 Synagogue Cemetery Management System
 for Beth Shalom Synagogue 
 
-####Authored by:
+####Authored by
+
 -Evan Alexander:  EA914
 -Emily Crabb:     ejc44
 -Samuel Kearns:   skearns4
