@@ -1,5 +1,5 @@
 ## Synagogue-Cemetery
-Synagogue Cemetery Management System for the Beth Shalom Synagogue 
+Synagogue and Cemetery Management System for the Beth Shalom Synagogue 
 
 ####Authored by
  - Evan Alexander:  EA914
