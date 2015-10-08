@@ -1,5 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 public class test extends JDialog
 {
@@ -25,6 +31,50 @@ public class test extends JDialog
     setContentPane(contentPane);
     setModal(true);
     getRootPane().setDefaultButton(createButton);
+    createButton.addActionListener(new ActionListener()
+    {
+      public void actionPerformed(ActionEvent e)
+      {
+        System.out.println("hi");
+      }
+    });
+    nameButton.addActionListener(new ActionListener()
+    {
+      //this is essentialled copied from the dbClient
+      public void actionPerformed(ActionEvent e)
+      {
+        try
+        {
+          Class.forName("org.h2.Driver");
+          Connection con = DriverManager.getConnection("jdbc:h2:./h2/cemetery;IFEXISTS=TRUE", "laboon", "bethshalom");
+          Statement stmt = con.createStatement();
+
+          //retrieves the text in the first nameField
+          String s = nameField.getText();
+
+          //VERY BASIC
+          //sql statement to collect all the data in a certain row where the first name
+          //matches whatever entered into s
+          ResultSet rs = stmt.executeQuery("SELECT * FROM PLOTS WHERE DECEASED_FNAME like \'" + s + "\'");
+          while (rs.next())
+          {
+            //tokenizes the results of select statement into individual strings corresponding
+            //to their columns
+            String fname = rs.getString("DECEASED_FNAME");
+            String lname = rs.getString("DECEASED_LNAME");
+            String plotNum = rs.getString("PLOT_NUMBER");
+            String date = rs.getString("DATE_DECEASED");
+
+            System.out.println(fname + ' ' + lname + ' ' + plotNum + ' ' + date);
+          }
+          stmt.close();
+          con.close();
+        } catch (Exception er)
+        {
+          System.out.println(er.getMessage());
+        }
+      }
+    });
 
   }
 
