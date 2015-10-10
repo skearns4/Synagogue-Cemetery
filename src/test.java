@@ -28,6 +28,12 @@ public class test extends JDialog
 
   public test()
   {
+    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    int width = (int)((.66)*(screenSize.getWidth()));
+    int height = (int)((.66)*(screenSize.getHeight()));
+    Dimension min = new Dimension(width, height);
+    setMinimumSize(min);
+    setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     setContentPane(contentPane);
     setModal(true);
     getRootPane().setDefaultButton(createButton);
@@ -35,7 +41,8 @@ public class test extends JDialog
     {
       public void actionPerformed(ActionEvent e)
       {
-        System.out.println("hi");
+        newEntry entry = new newEntry();
+        entry.setVisible(true);
       }
     });
     nameButton.addActionListener(new ActionListener()
