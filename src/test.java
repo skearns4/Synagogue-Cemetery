@@ -28,9 +28,10 @@ public class test extends JDialog
 
   public test()
   {
+    //need to get the buttons and textfield on same line --sk
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-    int width = (int)((.66)*(screenSize.getWidth()));
-    int height = (int)((.66)*(screenSize.getHeight()));
+    int width = (int) ((.66) * (screenSize.getWidth()));
+    int height = (int) ((.66) * (screenSize.getHeight()));
     Dimension min = new Dimension(width, height);
     setMinimumSize(min);
     setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -47,7 +48,7 @@ public class test extends JDialog
     });
     nameButton.addActionListener(new ActionListener()
     {
-      //this is essentialled copied from the dbClient
+      //this is essentially copied from the dbClient
       public void actionPerformed(ActionEvent e)
       {
         try
