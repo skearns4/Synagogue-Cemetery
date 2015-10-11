@@ -77,7 +77,8 @@ public class mainWindow extends JDialog
           }
           stmt.close();
           con.close();
-        } catch (Exception er)
+        }
+        catch (Exception er)
         {
           System.out.println(er.getMessage());
         }

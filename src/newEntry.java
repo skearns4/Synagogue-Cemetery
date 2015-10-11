@@ -15,7 +15,7 @@ public class newEntry extends JDialog
 {
   //TODO everything
   private JPanel contentPane;
-  private JTextField firstNameText;   //text field for first name
+  private JTextField firstNameText;  //text field for first name
   private JLabel first = new JLabel("First Name:");
   private JTextField lastNameText;   //text field for last name
   private JLabel last = new JLabel("Last Name:");
@@ -75,7 +75,6 @@ public class newEntry extends JDialog
   //---sk
   class addEntryListener implements ActionListener
   {
-
     public void actionPerformed(ActionEvent e)
     {
       //int day = 0, month = 0, year = 0;
@@ -171,8 +170,6 @@ public class newEntry extends JDialog
         System.out.println(er.getMessage());
       }
     }
-
-
   }
 
   class cancelButtonListener implements ActionListener
@@ -182,7 +179,6 @@ public class newEntry extends JDialog
       setVisible(false);
       dispose();
     }
-
   }
 
   //class housing text field mouse listeners
@@ -190,7 +186,6 @@ public class newEntry extends JDialog
   //more functionality available if needed(i.e auto-capitalize on exit), but not necessary
   class textFieldListener implements MouseListener
   {
-
     @Override
     public void mouseClicked(MouseEvent e)
     {
@@ -200,7 +195,6 @@ public class newEntry extends JDialog
         curr.setForeground(Color.BLACK);
         curr.setText("");
       }
-
     }
 
     @Override
