@@ -25,7 +25,7 @@ public class newEntry extends JDialog
   private JTextField plotNumberText; //text field for plot number
   private JLabel plot = new JLabel("Plot Number:");
   private JTextField dateText;       //text field for date
-  private JLabel date = new JLabel("Date(mm/dd/yyyy):");
+  private JLabel date = new JLabel("Date (yyyy-mm-dd):");
   private JButton add;               //button to add entry with text field arguments
   private JButton cancel;            //cancel new entry
 
