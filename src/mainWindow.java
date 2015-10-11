@@ -7,7 +7,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class test extends JDialog
+public class mainWindow extends JDialog
 {
   private JPanel contentPane;
   private JTextField plotField;
@@ -26,7 +26,7 @@ public class test extends JDialog
   private JPanel panel5;
   private JPanel panel6;
 
-  public test()
+  public mainWindow()
   {
     //need to get the buttons and textfield on same line --sk
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -88,7 +88,7 @@ public class test extends JDialog
 
   public static void main(String[] args)
   {
-    test dialog = new test();
+    mainWindow dialog = new mainWindow();
     dialog.pack();
     dialog.setVisible(true);
     System.exit(0);

@@ -7,9 +7,6 @@ import java.awt.event.MouseListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
-import java.util.Calendar;
-import java.util.InputMismatchException;
-import java.util.Scanner;
 
 /**
  * Created by Louie on 10/8/15.
@@ -157,23 +154,21 @@ public class newEntry extends JDialog
         }
        */
       }
-        try
-        {
-          System.out.println("test");
-          Class.forName("org.h2.Driver");
-          Connection con = DriverManager.getConnection("jdbc:h2:./h2/cemetery;IFEXISTS=TRUE", "laboon", "bethshalom");
-          Statement stmt = con.createStatement();
+      try
+      {
+        System.out.println("mainWindow");
+        Class.forName("org.h2.Driver");
+        Connection con = DriverManager.getConnection("jdbc:h2:./h2/cemetery;IFEXISTS=TRUE", "laboon", "bethshalom");
+        Statement stmt = con.createStatement();
 
-          //boolean rs = stmt.execute("INSERT INTO PLOTS VALUES ('" + firstName + "'" + "," + "'" + lastName + "'" + "," + plotNumber + "," + "'" + month + "-" + day + "-" + year + "'" + ")");
-          boolean rs = stmt.execute("INSERT INTO PLOTS VALUES ('" + firstName + "'" + "," + "'" + lastName + "'" + "," + plotNumber + "," + "'" + date + "'" + ")");
+        boolean rs = stmt.execute("INSERT INTO PLOTS VALUES ('" + firstName + "'" + "," + "'" + lastName + "'" + "," + plotNumber + "," + "'" + date + "'" + ")");
 
-          stmt.close();
-          con.close();
-        }
-        catch (Exception er)
-        {
-          System.out.println(er.getMessage());
-
+        stmt.close();
+        con.close();
+      }
+      catch (Exception er)
+      {
+        System.out.println(er.getMessage());
       }
     }
 
