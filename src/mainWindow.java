@@ -9,7 +9,7 @@ import java.sql.Statement;
 
 public class mainWindow extends JPanel
 {
-
+  private DisplayPanel dp;
   private JPanel titlePanel;
   private JLabel mainHeading = new JLabel("Beth Shalom Synagogue");
   private JLabel subHeading = new JLabel("Cemetery Management System");
@@ -24,8 +24,9 @@ public class mainWindow extends JPanel
   private JTextField plotField;
   private JButton plotButton;
 
-  public mainWindow()
+  public mainWindow(DisplayPanel display)
   {
+    dp = display;
     //Setup SearchPanel
     setLayout(new GridLayout(4,1));
 
@@ -69,12 +70,12 @@ public class mainWindow extends JPanel
 
   }
 
-  public static void main(String[] args)
-  {
-    mainWindow dialog = new mainWindow();
-    dialog.setVisible(true);
-    System.exit(0);
-  }
+//  public static void main(String[] args)
+//  {
+//    mainWindow dialog = new mainWindow();
+//    dialog.setVisible(true);
+//    System.exit(0);
+//  }
 
   class createListener implements ActionListener{
     @Override
@@ -109,7 +110,8 @@ public class mainWindow extends JPanel
           String plotNum = rs.getString("PLOT_NUMBER");
           String date = rs.getString("DATE_DECEASED");
 
-          System.out.println(fname + ' ' + lname + ' ' + plotNum + ' ' + date);
+          //System.out.println(fname + ' ' + lname + ' ' + plotNum + ' ' + date);
+          dp.print(fname + ' ' + lname + ' ' + plotNum + ' ' + date);
         }
         stmt.close();
         con.close();
@@ -145,7 +147,8 @@ public class mainWindow extends JPanel
           String plotNum = rs.getString("PLOT_NUMBER");
           String date = rs.getString("DATE_DECEASED");
 
-          System.out.println(fname + ' ' + lname + ' ' + plotNum + ' ' + date);
+          //System.out.println(fname + ' ' + lname + ' ' + plotNum + ' ' + date);
+          dp.print(fname + ' ' + lname + ' ' + plotNum + ' ' + date);
         }
         stmt.close();
         con.close();
