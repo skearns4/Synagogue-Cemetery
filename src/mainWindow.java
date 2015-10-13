@@ -32,22 +32,35 @@ public class mainWindow extends JPanel
 
     //Deal with titlePanel
     titlePanel = new JPanel(new FlowLayout());
+    Color panelColor = new Color(153,204,255); //initialize main color
+    titlePanel.setBackground(panelColor); //set color of title panel
+    Font mainHeadingFont = new Font("Serif", Font.PLAIN, 24); //font for the main heading
+    mainHeading.setFont(mainHeadingFont); // set the font of the main heading
     titlePanel.add(mainHeading);
+    Font subHeadingFont = new Font("Serif", Font.BOLD, 32); //font for the sub heading
+    subHeading.setFont(subHeadingFont); // set the font of the sub heading
     titlePanel.add(subHeading);
     add(titlePanel);
 
     //Initialize createPanel
     createPanel = new JPanel(new GridLayout(1,1));
+    createPanel.setBackground(panelColor);// set create panel color
+    Font mainFont = new Font("Serif", Font.PLAIN,20); //create main font for buttons, etc
     createButton = new JButton("Create New Entry");
     createButton.addActionListener(new createListener());
+    createButton.setFont(mainFont); //set create button font
     createPanel.add(createButton);
     add(createPanel);
     createPanel.setVisible(true);
     //Initialize namePanel
     namePanel = new JPanel(new GridLayout(1,3));
+    namePanel.setBackground(panelColor); // set name panel color
     nameLabel = new JLabel("Search By Name:");
+    nameLabel.setFont(mainFont);//set name label font
+    nameLabel.setHorizontalAlignment(SwingConstants.CENTER); //center name label
     nameField = new JTextField();
     nameButton = new JButton("Search!");
+    nameButton.setFont(mainFont); // set name button font
     nameButton.addActionListener(new nameListener());
     namePanel.add(nameLabel);
     namePanel.add(nameField);
@@ -56,9 +69,13 @@ public class mainWindow extends JPanel
     namePanel.setVisible(true);
     //Initialize plotPanel
     plotPanel = new JPanel(new GridLayout(1,3));
+    plotPanel.setBackground(panelColor);//set plot panel color
     plotLabel = new JLabel("Search By Plot:");
+    plotLabel.setFont(mainFont);//set plot label font
+    plotLabel.setHorizontalAlignment(SwingConstants.CENTER); //center plot label
     plotField = new JTextField();
     plotButton = new JButton("Search!");
+    plotButton.setFont(mainFont); // set plot button font
     plotButton.addActionListener(new plotListener());
     plotPanel.add(plotLabel);
     plotPanel.add(plotField);
