@@ -47,6 +47,5 @@ public class driver {
         dp.setVisible(true);
         mainWindow.setVisible(true);
         //Possibly add display window as row 2 in mainWindow beneath mw
-
     }
 }
