@@ -28,11 +28,11 @@ public class mainWindow extends JPanel
   {
     dp = display;
     //Setup SearchPanel
-    setLayout(new GridLayout(4,1));
+    setLayout(new GridLayout(4, 1));
 
     //Deal with titlePanel
     titlePanel = new JPanel(new FlowLayout());
-    Color panelColor = new Color(153,204,255); //initialize main color
+    Color panelColor = new Color(153, 204, 255); //initialize main color
     titlePanel.setBackground(panelColor); //set color of title panel
     Font mainHeadingFont = new Font("Serif", Font.PLAIN, 24); //font for the main heading
     mainHeading.setFont(mainHeadingFont); // set the font of the main heading
@@ -43,9 +43,9 @@ public class mainWindow extends JPanel
     add(titlePanel);
 
     //Initialize createPanel
-    createPanel = new JPanel(new GridLayout(1,1));
+    createPanel = new JPanel(new GridLayout(1, 1));
     createPanel.setBackground(panelColor);// set create panel color
-    Font mainFont = new Font("Serif", Font.PLAIN,20); //create main font for buttons, etc
+    Font mainFont = new Font("Serif", Font.PLAIN, 20); //create main font for buttons, etc
     createButton = new JButton("Create New Entry");
     createButton.addActionListener(new createListener());
     createButton.setFont(mainFont); //set create button font
@@ -53,7 +53,7 @@ public class mainWindow extends JPanel
     add(createPanel);
     createPanel.setVisible(true);
     //Initialize namePanel
-    namePanel = new JPanel(new GridLayout(1,3));
+    namePanel = new JPanel(new GridLayout(1, 3));
     namePanel.setBackground(panelColor); // set name panel color
     nameLabel = new JLabel("Search By Name:");
     nameLabel.setFont(mainFont);//set name label font
@@ -68,7 +68,7 @@ public class mainWindow extends JPanel
     add(namePanel);
     namePanel.setVisible(true);
     //Initialize plotPanel
-    plotPanel = new JPanel(new GridLayout(1,3));
+    plotPanel = new JPanel(new GridLayout(1, 3));
     plotPanel.setBackground(panelColor);//set plot panel color
     plotLabel = new JLabel("Search By Plot:");
     plotLabel.setFont(mainFont);//set plot label font
@@ -84,7 +84,6 @@ public class mainWindow extends JPanel
     plotPanel.setVisible(true);
 
 
-
   }
 
 //  public static void main(String[] args)
@@ -94,17 +93,21 @@ public class mainWindow extends JPanel
 //    System.exit(0);
 //  }
 
-  class createListener implements ActionListener{
+  class createListener implements ActionListener
+  {
     @Override
-    public void actionPerformed(ActionEvent actionEvent) {
+    public void actionPerformed(ActionEvent actionEvent)
+    {
       newEntry entry = new newEntry();
       entry.setVisible(true);
     }
   }
 
-  class nameListener implements ActionListener{
+  class nameListener implements ActionListener
+  {
     @Override
-    public void actionPerformed(ActionEvent actionEvent) {
+    public void actionPerformed(ActionEvent actionEvent)
+    {
       try
       {
         Class.forName("org.h2.Driver");
@@ -132,16 +135,19 @@ public class mainWindow extends JPanel
         }
         stmt.close();
         con.close();
-      } catch (Exception er)
+      }
+      catch (Exception er)
       {
         System.out.println(er.getMessage());
       }
     }
   }
 
-  class plotListener implements ActionListener{
+  class plotListener implements ActionListener
+  {
     @Override
-    public void actionPerformed(ActionEvent actionEvent) {
+    public void actionPerformed(ActionEvent actionEvent)
+    {
       try
       {
         Class.forName("org.h2.Driver");
@@ -150,7 +156,7 @@ public class mainWindow extends JPanel
 
         //retrieves the text in the first nameField
         String s = plotField.getText();
-		String[] splitStr = s.split("\\s"); // If entered both first and last name
+        String[] splitStr = s.split("\\s"); // If entered both first and last name
 
         //VERY BASIC
         //sql statement to collect all the data in a certain row where the first name
@@ -168,8 +174,8 @@ public class mainWindow extends JPanel
           //System.out.println(fname + ' ' + lname + ' ' + plotNum + ' ' + date);
           dp.print(fname + ' ' + lname + ' ' + plotNum + ' ' + date);
         }
-		
-		// Check if is last name
+
+        // Check if is last name
         rs = stmt.executeQuery("SELECT * FROM PLOTS WHERE DECEASED_LNAME like \'" + s + "\'");
         while (rs.next())
         {
@@ -186,7 +192,7 @@ public class mainWindow extends JPanel
 
         // Check if is full name
         rs = stmt.executeQuery("SELECT * FROM PLOTS WHERE DECEASED_FNAME like \'" + splitStr[0] + "\'");
-        while(rs.next())
+        while (rs.next())
         {
           //tokenizes the results of select statement into individual strings corresponding
           //to their columns
@@ -197,18 +203,21 @@ public class mainWindow extends JPanel
 
           ResultSet rs2 = stmt.executeQuery("SELECT * FROM PLOTS WHERE DECEASED_LNAME like \'" + splitStr[1] + "\'");
 
-          while (rs2.next()) {
+          while (rs2.next())
+          {
             String plotNum2 = rs2.getString("PLOT_NUMBER");
 
-            if (plotNum2.equals(plotNum)) {
+            if (plotNum2.equals(plotNum))
+            {
               dp.print(fname + ' ' + lname + ' ' + plotNum + ' ' + date);
             }
           }
-        }		
-		
+        }
+
         stmt.close();
         con.close();
-      } catch (Exception er)
+      }
+      catch (Exception er)
       {
         System.out.println(er.getMessage());
       }

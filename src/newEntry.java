@@ -8,9 +8,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 
-/**
- * Created by Louie on 10/8/15.
- */
 public class newEntry extends JDialog
 {
   private JPanel contentPane;
@@ -187,6 +184,7 @@ public class newEntry extends JDialog
     }
 
   }
+
   //---ls
   //class housing text field mouse listeners
   //created in order to clear fields of error messages
