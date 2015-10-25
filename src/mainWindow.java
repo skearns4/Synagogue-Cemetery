@@ -150,6 +150,7 @@ public class mainWindow extends JPanel
 
         //retrieves the text in the first nameField
         String s = plotField.getText();
+		String[] splitStr = s.split("\\s"); // If entered both first and last name
 
         //VERY BASIC
         //sql statement to collect all the data in a certain row where the first name
@@ -167,6 +168,44 @@ public class mainWindow extends JPanel
           //System.out.println(fname + ' ' + lname + ' ' + plotNum + ' ' + date);
           dp.print(fname + ' ' + lname + ' ' + plotNum + ' ' + date);
         }
+		
+		// Check if is last name
+        rs = stmt.executeQuery("SELECT * FROM PLOTS WHERE DECEASED_LNAME like \'" + s + "\'");
+        while (rs.next())
+        {
+          //tokenizes the results of select statement into individual strings corresponding
+          //to their columns
+          String fname = rs.getString("DECEASED_FNAME");
+          String lname = rs.getString("DECEASED_LNAME");
+          String plotNum = rs.getString("PLOT_NUMBER");
+          String date = rs.getString("DATE_DECEASED");
+
+          //System.out.println(fname + ' ' + lname + ' ' + plotNum + ' ' + date);
+          dp.print(fname + ' ' + lname + ' ' + plotNum + ' ' + date);
+        }
+
+        // Check if is full name
+        rs = stmt.executeQuery("SELECT * FROM PLOTS WHERE DECEASED_FNAME like \'" + splitStr[0] + "\'");
+        while(rs.next())
+        {
+          //tokenizes the results of select statement into individual strings corresponding
+          //to their columns
+          String fname = rs.getString("DECEASED_FNAME");
+          String lname = rs.getString("DECEASED_LNAME");
+          String plotNum = rs.getString("PLOT_NUMBER");
+          String date = rs.getString("DATE_DECEASED");
+
+          ResultSet rs2 = stmt.executeQuery("SELECT * FROM PLOTS WHERE DECEASED_LNAME like \'" + splitStr[1] + "\'");
+
+          while (rs2.next()) {
+            String plotNum2 = rs2.getString("PLOT_NUMBER");
+
+            if (plotNum2.equals(plotNum)) {
+              dp.print(fname + ' ' + lname + ' ' + plotNum + ' ' + date);
+            }
+          }
+        }		
+		
         stmt.close();
         con.close();
       } catch (Exception er)
