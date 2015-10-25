@@ -112,6 +112,7 @@ public class mainWindow extends JPanel
         //sql statement to collect all the data in a certain row where the first name
         //matches whatever entered into s
         ResultSet rs = stmt.executeQuery("SELECT * FROM PLOTS WHERE DECEASED_FNAME like \'" + s + "\'");
+        int i = 0;
         while (rs.next())
         {
           //tokenizes the results of select statement into individual strings corresponding
@@ -121,8 +122,8 @@ public class mainWindow extends JPanel
           String plotNum = rs.getString("PLOT_NUMBER");
           String date = rs.getString("DATE_DECEASED");
 
-          //System.out.println(fname + ' ' + lname + ' ' + plotNum + ' ' + date);
-          dp.print(fname + ' ' + lname + ' ' + plotNum + ' ' + date);
+          dp.add(fname, lname, plotNum, date, i); //add the current result to the table data
+          i++; //increment the row in the table so if multiple results returned, each is displayed in a new row
         }
         stmt.close();
         con.close();
@@ -153,6 +154,7 @@ public class mainWindow extends JPanel
         //sql statement to collect all the data in a certain row where the first name
         //matches whatever entered into s
         ResultSet rs = stmt.executeQuery("SELECT * FROM PLOTS WHERE PLOT_NUMBER like \'" + s + "\'");
+        int i = 0;
         while (rs.next())
         {
           //tokenizes the results of select statement into individual strings corresponding
@@ -162,8 +164,8 @@ public class mainWindow extends JPanel
           String plotNum = rs.getString("PLOT_NUMBER");
           String date = rs.getString("DATE_DECEASED");
 
-          //System.out.println(fname + ' ' + lname + ' ' + plotNum + ' ' + date);
-          dp.print(fname + ' ' + lname + ' ' + plotNum + ' ' + date);
+          dp.add(fname, lname, plotNum, date, i); //add the current result to the table data
+          i++; //increment the row in the table so if multiple results returned, each is displayed in a new row
         }
 
         // Check if is last name
@@ -177,8 +179,8 @@ public class mainWindow extends JPanel
           String plotNum = rs.getString("PLOT_NUMBER");
           String date = rs.getString("DATE_DECEASED");
 
-          //System.out.println(fname + ' ' + lname + ' ' + plotNum + ' ' + date);
-          dp.print(fname + ' ' + lname + ' ' + plotNum + ' ' + date);
+          dp.add(fname, lname, plotNum, date, i); //add the current result to the table data
+          i++; //increment the row in the table so if multiple results returned, each is displayed in a new row
         }
 
         // Check if is full name
@@ -194,13 +196,13 @@ public class mainWindow extends JPanel
 
           ResultSet rs2 = stmt.executeQuery("SELECT * FROM PLOTS WHERE DECEASED_LNAME like \'" + splitStr[1] + "\'");
 
-          while (rs2.next())
-          {
+          while (rs2.next()) {
             String plotNum2 = rs2.getString("PLOT_NUMBER");
 
             if (plotNum2.equals(plotNum))
             {
-              dp.print(fname + ' ' + lname + ' ' + plotNum + ' ' + date);
+              dp.add(fname, lname, plotNum, date, i); //add the current result to the table data
+              i++; //increment the row in the table so if multiple results returned, each is displayed in a new row
             }
           }
         }
