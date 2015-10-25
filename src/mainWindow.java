@@ -82,16 +82,7 @@ public class mainWindow extends JPanel
     plotPanel.add(plotButton);
     add(plotPanel);
     plotPanel.setVisible(true);
-
-
   }
-
-//  public static void main(String[] args)
-//  {
-//    mainWindow dialog = new mainWindow();
-//    dialog.setVisible(true);
-//    System.exit(0);
-//  }
 
   class createListener implements ActionListener
   {

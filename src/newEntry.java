@@ -11,7 +11,7 @@ import java.sql.Statement;
 public class newEntry extends JDialog
 {
   private JPanel contentPane;
-  private JTextField firstNameText;   //text field for first name
+  private JTextField firstNameText;  //text field for first name
   private JLabel first = new JLabel("First Name:");
   private JTextField lastNameText;   //text field for last name
   private JLabel last = new JLabel("Last Name:");
@@ -58,20 +58,13 @@ public class newEntry extends JDialog
     add.addActionListener(new addEntryListener());
     cancel.addActionListener(new cancelButtonListener());
   }
-  //---ls
   //class housing add button listener
   //should parse each field available
+  ///////////////////////////////////////////////////
   //based on parsed fields it should check for errors
   //~~~~ good place for unit testing ~~~~
-  //---ls
-
-  //---sk
-  //the font stays red. maybe it should be looped?
-  //i think there's a way to handle dates in sql that will make the error checking a little cleaner.
-  //---sk
   class addEntryListener implements ActionListener
   {
-
     public void actionPerformed(ActionEvent e)
     {
       //int day = 0, month = 0, year = 0;
@@ -114,41 +107,7 @@ public class newEntry extends JDialog
       }
       else if (dateText.getForeground() == Color.BLACK)
       {
-        /*
-        Scanner dateScan = new Scanner(date);
-        dateScan.useDelimiter("/");
-        try
-        {
-          day = dateScan.nextInt();
-          month = dateScan.nextInt();
-          year = dateScan.nextInt();
-        }
-        catch (InputMismatchException mismatch)
-        {
-          dateText.setForeground(Color.RED);
-          dateText.setText("INVALID DATE FORMAT");
-          return;
-        }
-        if ((day < 1) || (day > 31))
-        {
-          dateText.setForeground(Color.RED);
-          dateText.setText("INVALID DAY");
-          return;
-        }
-        if ((month < 1) || (month > 12))
-        {
-          dateText.setForeground(Color.RED);
-          dateText.setText("INVALID MONTH");
-          return;
-        }
-        if ((year < 1895) || (year > Calendar.getInstance().get(Calendar.YEAR)))
-          ;
-        {
-          dateText.setForeground(Color.RED);
-          dateText.setText("INVALID YEAR");
-          return;
-        }
-       */
+        //TODO error handling for date
       }
       try
       {
@@ -167,14 +126,10 @@ public class newEntry extends JDialog
         System.out.println(er.getMessage());
       }
     }
-
-
   }
 
-  //---ls
   //class housing cancel button listener
   //created in order to exit dialog
-  //---ls
   class cancelButtonListener implements ActionListener
   {
     public void actionPerformed(ActionEvent e)
@@ -182,16 +137,12 @@ public class newEntry extends JDialog
       setVisible(false);
       dispose();
     }
-
   }
 
-  //---ls
   //class housing text field mouse listeners
   //created in order to clear fields of error messages
-  //---ls
   class textFieldListener implements MouseListener
   {
-
     @Override
     public void mouseClicked(MouseEvent e)
     {
@@ -201,7 +152,6 @@ public class newEntry extends JDialog
         curr.setForeground(Color.BLACK);
         curr.setText("");
       }
-
     }
 
     @Override
