@@ -216,6 +216,15 @@ public class mainWindow extends JPanel
       }
     }
   }
+  public boolean isEmpty(ResultSet rs) throws java.sql.SQLException
+  {
+    return !rs.first();
+  }
+
+  public boolean hasMoreThanOneRow(ResultSet rs) throws java.sql.SQLException
+  {
+    return rs.first() && rs.next();
+  }
 
 }
 
