@@ -6,7 +6,7 @@ import java.sql.*;
 
 public class mainWindow extends JPanel
 {
-  private DisplayPanel dp;
+  private static DisplayPanel dp;
   private JPanel titlePanel;
   private JLabel mainHeading = new JLabel("Beth Shalom Synagogue");
   private JLabel subHeading = new JLabel("Cemetery Management System");
@@ -49,6 +49,7 @@ public class mainWindow extends JPanel
     createPanel.add(createButton);
     add(createPanel);
     createPanel.setVisible(true);
+
     //Initialize namePanel
     namePanel = new JPanel(new GridLayout(1, 3));
     namePanel.setBackground(panelColor); // set name panel color
@@ -64,6 +65,7 @@ public class mainWindow extends JPanel
     namePanel.add(nameButton);
     add(namePanel);
     namePanel.setVisible(true);
+
     //Initialize plotPanel
     plotPanel = new JPanel(new GridLayout(1, 3));
     plotPanel.setBackground(panelColor);//set plot panel color
@@ -91,18 +93,21 @@ public class mainWindow extends JPanel
     }
   }
 
+  /*
+  Searching by name
+   */
   class nameListener implements ActionListener
   {
     @Override
     public void actionPerformed(ActionEvent actionEvent)
     {
       String fullName = nameField.getText();
-      if(fullName.contains(" "))
+      if(fullName.contains(" ")) // Split name if contains spaces - has a first and last name
       {
         String[] splitStr = fullName.split("\\s");
         String firstName = splitStr[0];
         String lastName = splitStr[1];
-        try
+        try // Both first and last name match entry in database
         {
           queryDb("SELECT * FROM PLOTS WHERE DECEASED_FNAME like \'" + firstName + "\' AND DECEASED_LNAME like \'" + lastName + "\'");
         }
@@ -111,9 +116,9 @@ public class mainWindow extends JPanel
           e.printStackTrace();
         }
       }
-      else
+      else // Is only a first or only a last name
       {
-        try
+        try // Matches entry's first or last name field in database
         {
           queryDb("SELECT * FROM PLOTS WHERE DECEASED_FNAME like \'" + fullName + "\' OR DECEASED_LNAME like \'" + fullName + "\'");
         }
@@ -126,14 +131,17 @@ public class mainWindow extends JPanel
     }
   }
 
+  /*
+  Searching by plot number
+  */
   class plotListener implements ActionListener
   {
     @Override
     public void actionPerformed(ActionEvent actionEvent)
     {
       String plot = plotField.getText();
-      int plotInt = Integer.parseInt(plot);
-      try
+      int plotInt = Integer.parseInt(plot); // Read in integer plot number
+      try // Search for plot number
       {
         queryDb("SELECT * FROM PLOTS WHERE PLOT_NUMBER = " + plotInt + "");
       }
@@ -169,9 +177,10 @@ public class mainWindow extends JPanel
   helper method to query the DB
   takes a string that should be a properly formatted SQL statement
    */
-  public boolean queryDb(String query) throws java.sql.SQLException
+  public static int queryDb(String query) throws java.sql.SQLException
   {
-    //System.out.println(query);
+    int numEntries = 0; // Number of entries - used primarily for JUnit tests
+
     try
     {
       //establishes connection to our DB
@@ -189,8 +198,11 @@ public class mainWindow extends JPanel
 
       //i is a counter for number of results in resultset
       int i = 0;
+
       while (rs.next())
       {
+          numEntries++; // Increment number of entries
+
         //tokenizes the results of select statement into individual strings corresponding
         //to their columns
         String fname = rs.getString("DECEASED_FNAME");
@@ -201,16 +213,19 @@ public class mainWindow extends JPanel
         dp.add(fname, lname, plotNum, date, i); //add the current result to the table data
         i++; //increment the row in the table so if multiple results returned, each is displayed in a new row
       }
+
       stmt.close();
       con.close();
-      return true;
+
+      return numEntries;
     }
     catch (Exception er)
     {
       System.out.println(er.getMessage());
-      return false;
+      return numEntries;
     }
   }
+
 }
 
 
