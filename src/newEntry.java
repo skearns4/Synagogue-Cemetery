@@ -112,7 +112,6 @@ public class newEntry extends JDialog
       }
       try
       {
-        System.out.println("mainWindow");
         Class.forName("org.h2.Driver");
         Connection con = DriverManager.getConnection("jdbc:h2:./h2/cemetery;IFEXISTS=TRUE", "laboon", "bethshalom");
         Statement stmt = con.createStatement();

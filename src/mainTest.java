@@ -18,7 +18,6 @@ import static org.junit.Assert.assertTrue;
     Had to adapt because JUnit is not really designed for GUIs
     Most of these tests rely on our currently existing database and will need to be updated when the real database is created
     For example, one test searches for "Mary", which exists in our current database but may not in our final database
-
  */
 public class mainTest
 {

@@ -1,7 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
 
-
 public class driver
 {
   private static JFrame mainWindow;
