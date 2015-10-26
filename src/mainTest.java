@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
     assertTrue / assertFalse
     assertNull / assertNotNul
     assertArrayEquals
- */
+*/
 
 public class mainTest
 {

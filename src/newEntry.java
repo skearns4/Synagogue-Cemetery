@@ -58,6 +58,7 @@ public class newEntry extends JDialog
     add.addActionListener(new addEntryListener());
     cancel.addActionListener(new cancelButtonListener());
   }
+
   //class housing add button listener
   //should parse each field available
   ///////////////////////////////////////////////////

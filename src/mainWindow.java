@@ -196,7 +196,8 @@ public class mainWindow extends JPanel
 
           ResultSet rs2 = stmt.executeQuery("SELECT * FROM PLOTS WHERE DECEASED_LNAME like \'" + splitStr[1] + "\'");
 
-          while (rs2.next()) {
+          while (rs2.next())
+          {
             String plotNum2 = rs2.getString("PLOT_NUMBER");
 
             if (plotNum2.equals(plotNum))
@@ -260,7 +261,7 @@ public class mainWindow extends JPanel
       ResultSet rs = stmt.executeQuery(query);
 
       //returns false if the query doesnt return anything
-      if(isEmpty(rs)) return false;
+      if (isEmpty(rs)) return false;
 
       //i is a counter for number of results in resultset
       int i = 0;
