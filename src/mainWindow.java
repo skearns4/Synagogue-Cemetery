@@ -2,10 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 
 public class mainWindow extends JPanel
 {
@@ -140,80 +137,15 @@ public class mainWindow extends JPanel
     @Override
     public void actionPerformed(ActionEvent actionEvent)
     {
+      String plot = plotField.getText();
+      int plotInt = Integer.parseInt(plot);
       try
       {
-        Class.forName("org.h2.Driver");
-        Connection con = DriverManager.getConnection("jdbc:h2:./h2/cemetery;IFEXISTS=TRUE", "laboon", "bethshalom");
-        Statement stmt = con.createStatement();
-
-        //retrieves the text in the first nameField
-        String s = plotField.getText();
-        String[] splitStr = s.split("\\s"); // If entered both first and last name
-
-        //VERY BASIC
-        //sql statement to collect all the data in a certain row where the first name
-        //matches whatever entered into s
-        ResultSet rs = stmt.executeQuery("SELECT * FROM PLOTS WHERE PLOT_NUMBER like \'" + s + "\'");
-        int i = 0;
-        while (rs.next())
-        {
-          //tokenizes the results of select statement into individual strings corresponding
-          //to their columns
-          String fname = rs.getString("DECEASED_FNAME");
-          String lname = rs.getString("DECEASED_LNAME");
-          String plotNum = rs.getString("PLOT_NUMBER");
-          String date = rs.getString("DATE_DECEASED");
-
-          dp.add(fname, lname, plotNum, date, i); //add the current result to the table data
-          i++; //increment the row in the table so if multiple results returned, each is displayed in a new row
-        }
-
-        // Check if is last name
-        rs = stmt.executeQuery("SELECT * FROM PLOTS WHERE DECEASED_LNAME like \'" + s + "\'");
-        while (rs.next())
-        {
-          //tokenizes the results of select statement into individual strings corresponding
-          //to their columns
-          String fname = rs.getString("DECEASED_FNAME");
-          String lname = rs.getString("DECEASED_LNAME");
-          String plotNum = rs.getString("PLOT_NUMBER");
-          String date = rs.getString("DATE_DECEASED");
-
-          dp.add(fname, lname, plotNum, date, i); //add the current result to the table data
-          i++; //increment the row in the table so if multiple results returned, each is displayed in a new row
-        }
-
-        // Check if is full name
-        rs = stmt.executeQuery("SELECT * FROM PLOTS WHERE DECEASED_FNAME like \'" + splitStr[0] + "\'");
-        while (rs.next())
-        {
-          //tokenizes the results of select statement into individual strings corresponding
-          //to their columns
-          String fname = rs.getString("DECEASED_FNAME");
-          String lname = rs.getString("DECEASED_LNAME");
-          String plotNum = rs.getString("PLOT_NUMBER");
-          String date = rs.getString("DATE_DECEASED");
-
-          ResultSet rs2 = stmt.executeQuery("SELECT * FROM PLOTS WHERE DECEASED_LNAME like \'" + splitStr[1] + "\'");
-
-          while (rs2.next())
-          {
-            String plotNum2 = rs2.getString("PLOT_NUMBER");
-
-            if (plotNum2.equals(plotNum))
-            {
-              dp.add(fname, lname, plotNum, date, i); //add the current result to the table data
-              i++; //increment the row in the table so if multiple results returned, each is displayed in a new row
-            }
-          }
-        }
-
-        stmt.close();
-        con.close();
+        queryDb("SELECT * FROM PLOTS WHERE PLOT_NUMBER = " + plotInt + "");
       }
-      catch (Exception er)
+      catch (SQLException e)
       {
-        System.out.println(er.getMessage());
+        e.printStackTrace();
       }
     }
   }
@@ -245,6 +177,7 @@ public class mainWindow extends JPanel
    */
   public boolean queryDb(String query) throws java.sql.SQLException
   {
+    System.out.println(query);
     try
     {
       //establishes connection to our DB
@@ -261,7 +194,7 @@ public class mainWindow extends JPanel
       ResultSet rs = stmt.executeQuery(query);
 
       //returns false if the query doesnt return anything
-      if (isEmpty(rs)) return false;
+      //if (isEmpty(rs)) return false;
 
       //i is a counter for number of results in resultset
       int i = 0;
@@ -287,6 +220,13 @@ public class mainWindow extends JPanel
       return false;
     }
   }
+
+  public boolean firstAndLastEntered(String s)
+  {
+    String[] splitStr = s.split("\\s");
+    return (splitStr.length > 1);
+  }
+
 
 }
 
