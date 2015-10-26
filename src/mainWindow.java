@@ -96,39 +96,33 @@ public class mainWindow extends JPanel
     @Override
     public void actionPerformed(ActionEvent actionEvent)
     {
-      try
+      String fullName = nameField.getText();
+      if(fullName.contains(" "))
       {
-        Class.forName("org.h2.Driver");
-        Connection con = DriverManager.getConnection("jdbc:h2:./h2/cemetery;IFEXISTS=TRUE", "laboon", "bethshalom");
-        Statement stmt = con.createStatement();
-
-        //retrieves the text in the first nameField
-        String s = nameField.getText();
-
-        //VERY BASIC
-        //sql statement to collect all the data in a certain row where the first name
-        //matches whatever entered into s
-        ResultSet rs = stmt.executeQuery("SELECT * FROM PLOTS WHERE DECEASED_FNAME like \'" + s + "\'");
-        int i = 0;
-        while (rs.next())
+        String[] splitStr = fullName.split("\\s");
+        String firstName = splitStr[0];
+        String lastName = splitStr[1];
+        try
         {
-          //tokenizes the results of select statement into individual strings corresponding
-          //to their columns
-          String fname = rs.getString("DECEASED_FNAME");
-          String lname = rs.getString("DECEASED_LNAME");
-          String plotNum = rs.getString("PLOT_NUMBER");
-          String date = rs.getString("DATE_DECEASED");
-
-          dp.add(fname, lname, plotNum, date, i); //add the current result to the table data
-          i++; //increment the row in the table so if multiple results returned, each is displayed in a new row
+          queryDb("SELECT * FROM PLOTS WHERE DECEASED_FNAME like \'" + firstName + "\' AND DECEASED_LNAME like \'" + lastName + "\'");
         }
-        stmt.close();
-        con.close();
+        catch (SQLException e)
+        {
+          e.printStackTrace();
+        }
       }
-      catch (Exception er)
+      else
       {
-        System.out.println(er.getMessage());
+        try
+        {
+          queryDb("SELECT * FROM PLOTS WHERE DECEASED_FNAME like \'" + fullName + "\' OR DECEASED_LNAME like \'" + fullName + "\'");
+        }
+        catch (SQLException e)
+        {
+          e.printStackTrace();
+        }
       }
+
     }
   }
 
@@ -177,7 +171,7 @@ public class mainWindow extends JPanel
    */
   public boolean queryDb(String query) throws java.sql.SQLException
   {
-    System.out.println(query);
+    //System.out.println(query);
     try
     {
       //establishes connection to our DB
@@ -185,9 +179,6 @@ public class mainWindow extends JPanel
       //totally should not have password in plain text...
       Connection con = DriverManager.getConnection("jdbc:h2:./h2/cemetery;IFEXISTS=TRUE", "laboon", "bethshalom");
       Statement stmt = con.createStatement();
-
-      //retrieves the text in the first nameField
-      String s = nameField.getText();
 
       //sql statement to collect all the data in a certain row where the first name
       //matches whatever entered into s
@@ -220,14 +211,6 @@ public class mainWindow extends JPanel
       return false;
     }
   }
-
-  public boolean firstAndLastEntered(String s)
-  {
-    String[] splitStr = s.split("\\s");
-    return (splitStr.length > 1);
-  }
-
-
 }
 
 
