@@ -95,18 +95,31 @@ public class mainWindow extends JPanel
 
   /*
   Searching by name
-   */
+  */
   class nameListener implements ActionListener
   {
     @Override
     public void actionPerformed(ActionEvent actionEvent)
     {
       String fullName = nameField.getText();
-      if(fullName.contains(" ")) // Split name if contains spaces - has a first and last name
+
+      if(fullName.contains(" "))
       {
+        // Split name if contains spaces - has a first and last name
+        fullName = fullName.toLowerCase();
         String[] splitStr = fullName.split("\\s");
+
+        //clean up input to make first char of string uppercase
         String firstName = splitStr[0];
+        char[] fn = firstName.toCharArray();
+        fn[0] = Character.toUpperCase(fn[0]);
+        firstName = new String(fn);
+
         String lastName = splitStr[1];
+        char[] ln = lastName.toCharArray();
+        ln[0] = Character.toUpperCase(ln[0]);
+        lastName = new String(ln);
+
         try // Both first and last name match entry in database
         {
           queryDb("SELECT * FROM PLOTS WHERE DECEASED_FNAME like \'" + firstName + "\' AND DECEASED_LNAME like \'" + lastName + "\'");
@@ -118,6 +131,12 @@ public class mainWindow extends JPanel
       }
       else // Is only a first or only a last name
       {
+        //clean up input to make first char of string uppercase
+        fullName = fullName.toLowerCase();
+        char[] fulln = fullName.toCharArray();
+        fulln[0] = Character.toUpperCase(fulln[0]);
+        fullName = new String(fulln);
+
         try // Matches entry's first or last name field in database
         {
           queryDb("SELECT * FROM PLOTS WHERE DECEASED_FNAME like \'" + fullName + "\' OR DECEASED_LNAME like \'" + fullName + "\'");
@@ -167,7 +186,7 @@ public class mainWindow extends JPanel
   /*
   hasMoreThanOneRow called on a ResultSet will return true if the result set
   contains multiple rows
-   */
+  */
   public boolean hasMoreThanOneRow(ResultSet rs) throws java.sql.SQLException
   {
     return rs.first() && rs.next();
@@ -176,9 +195,10 @@ public class mainWindow extends JPanel
   /*
   helper method to query the DB
   takes a string that should be a properly formatted SQL statement
-   */
+  */
   public static int queryDb(String query) throws java.sql.SQLException
   {
+    dp.clear();
     int numEntries = 0; // Number of entries - used primarily for JUnit tests
 
     try
@@ -201,7 +221,7 @@ public class mainWindow extends JPanel
 
       while (rs.next())
       {
-          numEntries++; // Increment number of entries
+        numEntries++; // Increment number of entries
 
         //tokenizes the results of select statement into individual strings corresponding
         //to their columns
@@ -213,7 +233,6 @@ public class mainWindow extends JPanel
         dp.add(fname, lname, plotNum, date, i); //add the current result to the table data
         i++; //increment the row in the table so if multiple results returned, each is displayed in a new row
       }
-
       stmt.close();
       con.close();
 
@@ -227,6 +246,3 @@ public class mainWindow extends JPanel
   }
 
 }
-
-
-
