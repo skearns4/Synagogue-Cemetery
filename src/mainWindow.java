@@ -102,23 +102,20 @@ public class mainWindow extends JPanel
     public void actionPerformed(ActionEvent actionEvent)
     {
       String fullName = nameField.getText();
+      fullName = fullName.toLowerCase();
 
       if(fullName.contains(" "))
       {
         // Split name if contains spaces - has a first and last name
-        fullName = fullName.toLowerCase();
         String[] splitStr = fullName.split("\\s");
 
-        //clean up input to make first char of string uppercase
+        //set separate strings for first and last name
         String firstName = splitStr[0];
-        char[] fn = firstName.toCharArray();
-        fn[0] = Character.toUpperCase(fn[0]);
-        firstName = new String(fn);
-
         String lastName = splitStr[1];
-        char[] ln = lastName.toCharArray();
-        ln[0] = Character.toUpperCase(ln[0]);
-        lastName = new String(ln);
+
+        //clean up input to make first char of string uppercase
+        firstName = cleanUp(firstName);
+        lastName = cleanUp(lastName);
 
         try // Both first and last name match entry in database
         {
@@ -132,10 +129,7 @@ public class mainWindow extends JPanel
       else // Is only a first or only a last name
       {
         //clean up input to make first char of string uppercase
-        fullName = fullName.toLowerCase();
-        char[] fulln = fullName.toCharArray();
-        fulln[0] = Character.toUpperCase(fulln[0]);
-        fullName = new String(fulln);
+        fullName = cleanUp(fullName);
 
         try // Matches entry's first or last name field in database
         {
@@ -146,7 +140,6 @@ public class mainWindow extends JPanel
           e.printStackTrace();
         }
       }
-
     }
   }
 
@@ -190,6 +183,16 @@ public class mainWindow extends JPanel
   public boolean hasMoreThanOneRow(ResultSet rs) throws java.sql.SQLException
   {
     return rs.first() && rs.next();
+  }
+
+  //accepts a string and returns a string that is formatted with the first character
+  //caputalized and the rest lowercase
+  public String cleanUp(String s)
+  {
+    char[] sc = s.toCharArray();
+    sc[0] = Character.toUpperCase(sc[0]);
+    s = new String(sc);
+    return s;
   }
 
   /*

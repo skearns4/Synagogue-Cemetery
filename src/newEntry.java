@@ -117,6 +117,11 @@ public class newEntry extends JDialog
         Connection con = DriverManager.getConnection("jdbc:h2:./h2/cemetery;IFEXISTS=TRUE", "laboon", "bethshalom");
         Statement stmt = con.createStatement();
 
+        //ensure that we enter new data in titlecase
+        firstName = cleanUp(firstName);
+        lastName = cleanUp(lastName);
+
+        //execute an insert into our DB
         boolean rs = stmt.execute("INSERT INTO PLOTS VALUES ('" + firstName + "'" + "," + "'" + lastName + "'" + "," + plotNumber + "," + "'" + date + "'" + ")");
 
         stmt.close();
@@ -178,6 +183,16 @@ public class newEntry extends JDialog
     {
 
     }
+  }
+
+  //accepts a string and returns a string that is formatted with the first character
+  //caputalized and the rest lowercase
+  public String cleanUp(String s)
+  {
+    char[] sc = s.toCharArray();
+    sc[0] = Character.toUpperCase(sc[0]);
+    s = new String(sc);
+    return s;
   }
 }
 
