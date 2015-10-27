@@ -144,6 +144,7 @@ public class mainWindow extends JPanel
 
                 try // Both first and last name match entry in database
                 {
+                    dp.clear();
                     queryDb("SELECT * FROM PLOTS WHERE DECEASED_FNAME like \'" + firstName + "\' AND DECEASED_LNAME like \'" + lastName + "\'");
                 }
                 catch (SQLException e)
@@ -158,6 +159,7 @@ public class mainWindow extends JPanel
 
                 try // Matches entry's first or last name field in database
                 {
+                    dp.clear();
                     queryDb("SELECT * FROM PLOTS WHERE DECEASED_FNAME like \'" + fullName + "\' OR DECEASED_LNAME like \'" + fullName + "\'");
                 }
                 catch (SQLException e)
@@ -185,6 +187,7 @@ public class mainWindow extends JPanel
             int plotInt = Integer.parseInt(plot); // Read in integer plot number
             try // Search for plot number
             {
+                dp.clear();
                 queryDb("SELECT * FROM PLOTS WHERE PLOT_NUMBER = " + plotInt + "");
             }
             catch (SQLException e)
@@ -241,7 +244,6 @@ public class mainWindow extends JPanel
      */
     public static int queryDb(String query) throws java.sql.SQLException
     {
-        dp.clear();
         int numEntries = 0; // Number of entries - used primarily for JUnit tests
 
         try
