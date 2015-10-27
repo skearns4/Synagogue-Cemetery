@@ -14,7 +14,7 @@ public class DisplayPanel extends JPanel
   public DisplayPanel()
   {
     String[] columns = new String[]{//headers for the search result table
-            "First Name", "Last Name", "Plot Number", "Date Deceased"
+        "First Name", "Last Name", "Plot Number", "Date Deceased"
     };
     JTable searchTable = new JTable(data, columns); //create search result table
     setLayout(new GridLayout(1, 1));
@@ -26,10 +26,10 @@ public class DisplayPanel extends JPanel
    * Called when a search is performed. Called once for every result returned. Adds the fields
    * for the result to be displayed to the data matrix and updates the display.
    *
-   * @param fn first name
-   * @param ln last name
-   * @param pn plot number
-   * @param d date
+   * @param fn  first name
+   * @param ln  last name
+   * @param pn  plot number
+   * @param d   date
    * @param num row the result is to be displayed on
    */
   public void add(String fn, String ln, String pn, String d, int num)
