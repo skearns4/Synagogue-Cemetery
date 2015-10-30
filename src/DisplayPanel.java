@@ -52,7 +52,7 @@ public class DisplayPanel extends JPanel
   public void clear()
   {
     for (int i = 0; i < 10; i++)
-      for (int j = 0; j < 4; j++)
+      for (int j = 0; j < 7; j++)
         this.data[i][j] = " ";
   }
 }
