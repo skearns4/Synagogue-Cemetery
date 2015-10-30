@@ -6,7 +6,7 @@ import java.awt.*;
  */
 public class DisplayPanel extends JPanel
 {
-  private Object[][] data = new Object[10][4];//data for the search result table
+  private Object[][] data = new Object[10][7];//data for the search result table
 
   /**
    * DisplayPanel constructor
@@ -14,7 +14,7 @@ public class DisplayPanel extends JPanel
   public DisplayPanel()
   {
     String[] columns = new String[]{//headers for the search result table
-        "First Name", "Last Name", "Plot Number", "Date Deceased"
+        "First Name", "Last Name", "Section", "Plot Number", "Grave Number", "Date Deceased", "View Entry"
     };
     JTable searchTable = new JTable(data, columns); //create search result table
     setLayout(new GridLayout(1, 1));
@@ -28,16 +28,21 @@ public class DisplayPanel extends JPanel
    *
    * @param fn  first name
    * @param ln  last name
+   * @param sn section number
    * @param pn  plot number
+   * @param gn grave number
    * @param d   date
    * @param num row the result is to be displayed on
    */
-  public void add(String fn, String ln, String pn, String d, int num)
+  public void add(String fn, String ln, String sn, String pn, String gn, String d, int num)
   {
     data[num][0] = fn;
     data[num][1] = ln;
-    data[num][2] = pn;
-    data[num][3] = d;
+    data[num][2] = sn;
+    data[num][3] = pn;
+    data[num][4] = gn;
+    data[num][5] = d;
+    data[num][6] = new JCheckBox();
     updateUI();
   }
 

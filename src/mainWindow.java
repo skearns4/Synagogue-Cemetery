@@ -272,10 +272,12 @@ public class mainWindow extends JPanel
         //to their columns
         String fname = rs.getString("DECEASED_FNAME");
         String lname = rs.getString("DECEASED_LNAME");
+        String sectionNum = rs.getString("SECTION");
         String plotNum = rs.getString("PLOT_NUMBER");
+        String graveNum = rs.getString("GRAVE");
         String date = rs.getString("DATE_DECEASED");
 
-        dp.add(fname, lname, plotNum, date, i); //add the current result to the table data
+        dp.add(fname, lname, sectionNum, plotNum, graveNum, date, i); //add the current result to the table data
         i++; //increment the row in the table so if multiple results returned, each is displayed in a new row
       }
       stmt.close();
