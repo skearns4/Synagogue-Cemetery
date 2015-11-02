@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 /**
@@ -6,7 +7,7 @@ import java.awt.*;
  */
 public class DisplayPanel extends JPanel
 {
-  private Object[][] data = new Object[10][7];//data for the search result table
+  private Object[][] data = new Object[100][7];//data for the search result table
 
   /**
    * DisplayPanel constructor
@@ -17,6 +18,9 @@ public class DisplayPanel extends JPanel
         "First Name", "Last Name", "Section", "Plot Number", "Grave Number", "Date Deceased", "View Entry"
     };
     JTable searchTable = new JTable(data, columns); //create search result table
+
+    searchTable.getColumn("View Entry").setCellRenderer(new ButtonRenderer());
+    searchTable.getColumn("View Entry").setCellEditor(new ButtonEditor(new JCheckBox()));
     setLayout(new GridLayout(1, 1));
     add(new JScrollPane(searchTable)); //add table to the display panel
     setVisible(true);
@@ -42,7 +46,7 @@ public class DisplayPanel extends JPanel
     data[num][3] = pn;
     data[num][4] = gn;
     data[num][5] = d;
-    data[num][6] = new JCheckBox();
+    data[num][6] = "select";
     updateUI();
   }
 
@@ -51,8 +55,8 @@ public class DisplayPanel extends JPanel
    */
   public void clear()
   {
-    for (int i = 0; i < 10; i++)
-      for (int j = 0; j < 4; j++)
+    for (int i = 0; i < 100; i++)
+      for (int j = 0; j < 7; j++)
         this.data[i][j] = " ";
   }
 }
