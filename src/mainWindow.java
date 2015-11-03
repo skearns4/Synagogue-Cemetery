@@ -258,9 +258,6 @@ public class mainWindow extends JPanel
       //matches whatever entered into s
       ResultSet rs = stmt.executeQuery(query);
 
-      //returns false if the query doesnt return anything
-      //if (isEmpty(rs)) return false;
-
       //i is a counter for number of results in resultset
       int i = 0;
 

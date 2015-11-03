@@ -247,6 +247,3 @@ public class newEntry extends JDialog
     return s;
   }
 }
-
-
-
