@@ -2,16 +2,16 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * class housing main(), used to initialize and add displayPanel and mainWindow to one Frame
+ * class housing main(), used to initialize and add displayPanel and MainWindow to one Frame
  */
-public class driver
+public class Driver
 {
-  private static JFrame mainWindow; //Frame housing mainWindow and DisplayPanel
-  private static mainWindow mw;
+  private static JFrame mainWindow; //Frame housing MainWindow and DisplayPanel
+  private static MainWindow mw;
   private static DisplayPanel dp;
 
   /**
-   * main, used to handle arguments and call driver() to start GUI
+   * main, used to handle arguments and call Driver() to start GUI
    *
    * @param args string array containing run arguments
    */
@@ -36,7 +36,7 @@ public class driver
     Dimension min = new Dimension(width, height); //set frame to 2/3 screen width and height
     mainWindow.setMinimumSize(min);
     dp = new DisplayPanel();  //Initialize display panel
-    mw = new mainWindow(dp); //Initialize search panel
+    mw = new MainWindow(dp); //Initialize search panel
     //add
     mainWindow.add(mw);
     mainWindow.add(dp);

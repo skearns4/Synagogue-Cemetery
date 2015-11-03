@@ -23,7 +23,7 @@ public class MainTest
 
     try // Search for illegal plot number
     {
-      numEntries = mainWindow.queryDb("SELECT * FROM PLOTS WHERE DECEASED_FNAME like \'" + "Mary" + "\' OR DECEASED_LNAME like \'" + "Mary" + "\'");
+      numEntries = MainWindow.queryDb("SELECT * FROM PLOTS WHERE DECEASED_FNAME like \'" + "Mary" + "\' OR DECEASED_LNAME like \'" + "Mary" + "\'");
     }
     catch (SQLException e)
     {
@@ -44,7 +44,7 @@ public class MainTest
 
     try // Search for illegal plot number
     {
-      numEntries = mainWindow.queryDb("SELECT * FROM PLOTS WHERE DECEASED_FNAME like \'" + "Mary" + "\' OR DECEASED_LNAME like \'" + "Mary" + "\'");
+      numEntries = MainWindow.queryDb("SELECT * FROM PLOTS WHERE DECEASED_FNAME like \'" + "Mary" + "\' OR DECEASED_LNAME like \'" + "Mary" + "\'");
     }
     catch (SQLException e)
     {
@@ -64,7 +64,7 @@ public class MainTest
 
     try // Search for illegal plot number
     {
-      numEntries = mainWindow.queryDb("SELECT * FROM PLOTS WHERE DECEASED_FNAME like \'" + "Mary" + "\' AND DECEASED_LNAME like \'" + "Sanders" + "\'");
+      numEntries = MainWindow.queryDb("SELECT * FROM PLOTS WHERE DECEASED_FNAME like \'" + "Mary" + "\' AND DECEASED_LNAME like \'" + "Sanders" + "\'");
     }
     catch (SQLException e)
     {
@@ -84,7 +84,7 @@ public class MainTest
 
     try // Search for illegal plot number
     {
-      numEntries = mainWindow.queryDb("SELECT * FROM PLOTS WHERE DECEASED_FNAME like \'" + "Invalid" + "\' OR DECEASED_LNAME like \'" + "Invalid" + "\'");
+      numEntries = MainWindow.queryDb("SELECT * FROM PLOTS WHERE DECEASED_FNAME like \'" + "Invalid" + "\' OR DECEASED_LNAME like \'" + "Invalid" + "\'");
     }
     catch (SQLException e)
     {
@@ -104,7 +104,7 @@ public class MainTest
 
     try // Search for illegal plot number
     {
-      numEntries = mainWindow.queryDb("SELECT * FROM PLOTS WHERE DECEASED_FNAME like \'" + "Invalid" + "\' AND DECEASED_LNAME like \'" + "Sanders" + "\'");
+      numEntries = MainWindow.queryDb("SELECT * FROM PLOTS WHERE DECEASED_FNAME like \'" + "Invalid" + "\' AND DECEASED_LNAME like \'" + "Sanders" + "\'");
     }
     catch (SQLException e)
     {
@@ -124,7 +124,7 @@ public class MainTest
 
     try // Search for illegal plot number
     {
-      numEntries = mainWindow.queryDb("SELECT * FROM PLOTS WHERE PLOT_NUMBER = " + 1 + "");
+      numEntries = MainWindow.queryDb("SELECT * FROM PLOTS WHERE PLOT_NUMBER = " + 1 + "");
     }
     catch (SQLException e)
     {
@@ -145,7 +145,7 @@ public class MainTest
 
     try // Search for illegal plot number
     {
-      numEntries = mainWindow.queryDb("SELECT * FROM PLOTS WHERE PLOT_NUMBER = " + 0 + "");
+      numEntries = MainWindow.queryDb("SELECT * FROM PLOTS WHERE PLOT_NUMBER = " + 0 + "");
     }
     catch (SQLException e)
     {
@@ -165,7 +165,7 @@ public class MainTest
 
     try // Search for illegal plot number
     {
-      numEntries = mainWindow.queryDb("SELECT * FROM PLOTS WHERE PLOT_NUMBER = " + -1 + "");
+      numEntries = MainWindow.queryDb("SELECT * FROM PLOTS WHERE PLOT_NUMBER = " + -1 + "");
     }
     catch (SQLException e)
     {

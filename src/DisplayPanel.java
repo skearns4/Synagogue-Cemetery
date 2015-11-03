@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * DisplayPanel class designed to output database queries in mainWindow
+ * DisplayPanel class designed to output database queries in MainWindow
  */
 public class DisplayPanel extends JPanel
 {
