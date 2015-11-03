@@ -30,9 +30,9 @@ public class DisplayPanel extends JPanel
    *
    * @param fn  first name
    * @param ln  last name
-   * @param sn section number
+   * @param sn  section number
    * @param pn  plot number
-   * @param gn grave number
+   * @param gn  grave number
    * @param d   date
    * @param num row the result is to be displayed on
    */
@@ -44,7 +44,7 @@ public class DisplayPanel extends JPanel
     data[num][3] = pn;
     data[num][4] = gn;
     data[num][5] = d;
-    data[num][6] = "select";
+    data[num][6] = "Select";
     updateUI();
   }
 
@@ -55,6 +55,6 @@ public class DisplayPanel extends JPanel
   {
     for (int i = 0; i < 100; i++)
       for (int j = 0; j < 7; j++)
-        this.data[i][j] = " ";
+        this.data[i][j] = "";
   }
 }
