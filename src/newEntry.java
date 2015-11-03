@@ -11,7 +11,7 @@ import java.sql.Statement;
 /**
  * Popup JDialog extension to add new entry to database
  */
-public class newEntry extends JDialog
+public class NewEntry extends JDialog
 {
   private JPanel contentPane;
   private JTextField firstNameText;  //text field for first name
@@ -26,9 +26,9 @@ public class newEntry extends JDialog
   private JButton cancel;            //cancel new entry
 
   /**
-   * newEntry class that constructor
+   * NewEntry class that constructor
    */
-  public newEntry()
+  public NewEntry()
   {
     //set basic functionality
     int width = 400, height = 200;
@@ -154,7 +154,7 @@ public class newEntry extends JDialog
   class cancelButtonListener implements ActionListener
   {
     /**
-     * Disposes of newEntry(this)
+     * Disposes of NewEntry(this)
      *
      * @param e button click action event
      */

@@ -7,7 +7,7 @@ import java.sql.*;
 /**
  * Window in top half of main frame, houses all text fields and buttons
  */
-public class mainWindow extends JPanel
+public class MainWindow extends JPanel
 {
   private static DisplayPanel dp;
   private JPanel titlePanel;
@@ -25,11 +25,11 @@ public class mainWindow extends JPanel
   private JButton plotButton;
 
   /**
-   * Constructor for mainWindow
+   * Constructor for MainWindow
    *
    * @param display DisplayPanel to be inserted in bottom half of grid layout
    */
-  public mainWindow(DisplayPanel display)
+  public MainWindow(DisplayPanel display)
   {
     //initialize dp to display
     dp = display;
@@ -101,14 +101,14 @@ public class mainWindow extends JPanel
   class createListener implements ActionListener
   {
     /**
-     * Initialize and set visible a newEntry dialog
+     * Initialize and set visible a NewEntry dialog
      *
      * @param actionEvent button click event
      */
     @Override
     public void actionPerformed(ActionEvent actionEvent)
     {
-      newEntry entry = new newEntry();
+      NewEntry entry = new NewEntry();
       entry.setVisible(true);
     }
   }
