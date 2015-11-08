@@ -17,13 +17,13 @@ public class MainTest
      Unit test that checks that there is an entry with the first name of Mary
   */
   @Test
-  public void testFirstNameMary()
+  public void testFirstNameAnna()
   {
     int numEntries = 0;
 
-    try // Search for illegal plot number
+    try // Search for valid first name
     {
-      numEntries = MainWindow.queryDb("SELECT * FROM PLOTS WHERE DECEASED_FNAME like \'" + "Mary" + "\' OR DECEASED_LNAME like \'" + "Mary" + "\'");
+      numEntries = MainWindow.queryDb("SELECT * FROM PLOTS WHERE DECEASED_FNAME like \'" + "Anna" + "\' OR DECEASED_LNAME like \'" + "Mary" + "\'");
     }
     catch (SQLException e)
     {
@@ -38,13 +38,13 @@ public class MainTest
      Unit test that checks that there is an entry with the last name of Sanders
   */
   @Test
-  public void testLastNameSanders()
+  public void testLastNameAaron()
   {
     int numEntries = 0;
 
-    try // Search for illegal plot number
+    try // Search for valid last name
     {
-      numEntries = MainWindow.queryDb("SELECT * FROM PLOTS WHERE DECEASED_FNAME like \'" + "Mary" + "\' OR DECEASED_LNAME like \'" + "Mary" + "\'");
+      numEntries = MainWindow.queryDb("SELECT * FROM PLOTS WHERE DECEASED_FNAME like \'" + "Aaron" + "\' OR DECEASED_LNAME like \'" + "Mary" + "\'");
     }
     catch (SQLException e)
     {
@@ -58,13 +58,13 @@ public class MainTest
      Unit test that checks that there is an entry with the full name of Mary Sanders
   */
   @Test
-  public void testFullNameMarySanders()
+  public void testFullNameAnnaAaron()
   {
     int numEntries = 0;
 
-    try // Search for illegal plot number
+    try // Search for valid full name
     {
-      numEntries = MainWindow.queryDb("SELECT * FROM PLOTS WHERE DECEASED_FNAME like \'" + "Mary" + "\' AND DECEASED_LNAME like \'" + "Sanders" + "\'");
+      numEntries = MainWindow.queryDb("SELECT * FROM PLOTS WHERE DECEASED_FNAME like \'" + "Anna" + "\' AND DECEASED_LNAME like \'" + "Aaron" + "\'");
     }
     catch (SQLException e)
     {
@@ -82,7 +82,7 @@ public class MainTest
   {
     int numEntries = 0;
 
-    try // Search for illegal plot number
+    try // Search for illegal name
     {
       numEntries = MainWindow.queryDb("SELECT * FROM PLOTS WHERE DECEASED_FNAME like \'" + "Invalid" + "\' OR DECEASED_LNAME like \'" + "Invalid" + "\'");
     }
@@ -102,7 +102,7 @@ public class MainTest
   {
     int numEntries = 0;
 
-    try // Search for illegal plot number
+    try // Search for illegal full name
     {
       numEntries = MainWindow.queryDb("SELECT * FROM PLOTS WHERE DECEASED_FNAME like \'" + "Invalid" + "\' AND DECEASED_LNAME like \'" + "Sanders" + "\'");
     }
@@ -115,16 +115,16 @@ public class MainTest
   }
 
   /*
-      Unit test that checks that there is a plot number 1
+      Unit test that checks that there is a plot number 175
    */
   @Test
-  public void testPlotNumberOne()
+  public void testPlotNumber175()
   {
     int numEntries = 0;
 
-    try // Search for illegal plot number
+    try // Search for valid plot number
     {
-      numEntries = MainWindow.queryDb("SELECT * FROM PLOTS WHERE PLOT_NUMBER = " + 1 + "");
+      numEntries = MainWindow.queryDb("SELECT * FROM PLOTS WHERE PLOT_NUMBER = " + 175 + "");
     }
     catch (SQLException e)
     {
