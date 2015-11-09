@@ -22,6 +22,30 @@ public class NewEntry extends JDialog
   private JLabel plot = new JLabel("Plot Number:");
   private JTextField dateText;       //text field for date
   private JLabel date = new JLabel("Date (yyyy-mm-dd):");
+  private JTextField sectionText;       //text field for section
+  private JLabel section = new JLabel("Section:");
+  private JTextField graveNumberText;       //text field for grave
+  private JLabel grave = new JLabel("Grave Number:");
+  private JTextField intermentNumberText;       //text field for interment number
+  private JLabel interment = new JLabel("Interment Number:");
+  private JTextField pnintText;       //text field for pn_int
+  private JLabel pnint = new JLabel("PN_Int:");
+  private JTextField pnlinerText;       //text field for pn_liner
+  private JLabel pnliner = new JLabel("PN_Liner:");
+  private JTextField pncgcText;       //text field for pn_cgc
+  private JLabel pncgc = new JLabel("PN_CGC:");
+  private JTextField pnrmfText;       //text field for pn_rmf
+  private JLabel pnrmf = new JLabel("PN_RMF:");
+  private JTextField monumentText;       //text field for monument
+  private JLabel monument = new JLabel("Monument:");
+  private JTextField ppPlaningText;       //text field for pp_planning
+  private JLabel ppPlaning = new JLabel("PP_Planning:");
+  private JTextField veteranText;       //text field for veteran
+  private JLabel veteran = new JLabel("Veteran:");
+  private JTextField foundationsText;       //text field for foundations
+  private JLabel cremated = new JLabel("Cremated:");
+  private JTextField crematedText;       //text field for cremated
+  private JLabel foundations = new JLabel("Foundations:");
   private JButton add;               //button to add entry with text field arguments
   private JButton cancel;            //cancel new entry
 
@@ -35,7 +59,7 @@ public class NewEntry extends JDialog
     Dimension min = new Dimension(width, height);
     setMinimumSize(min);
     setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-    setLayout(new GridLayout(5, 2));
+    setLayout(new GridLayout(17, 2));
     setModal(true);
     //init components
     add = new JButton("Add Entry");
@@ -44,6 +68,18 @@ public class NewEntry extends JDialog
     lastNameText = new JTextField();
     plotNumberText = new JTextField();
     dateText = new JTextField();
+    sectionText = new JTextField();
+    graveNumberText = new JTextField();
+    intermentNumberText = new JTextField();
+    pnintText = new JTextField();
+    pnlinerText = new JTextField();
+    pncgcText = new JTextField();
+    pnrmfText = new JTextField();
+    monumentText = new JTextField();
+    ppPlaningText = new JTextField();
+    veteranText = new JTextField();
+    crematedText = new JTextField();
+    foundationsText = new JTextField();
     //stylize
     Color backgroundColor = new Color(153, 204, 255); //initialize main color
     Font mainFont = new Font("Serif", Font.PLAIN, 20); //create main font for buttons
@@ -59,6 +95,30 @@ public class NewEntry extends JDialog
     add(plotNumberText);
     add(date);
     add(dateText);
+    add(section);
+    add(sectionText);
+    add(grave);
+    add(graveNumberText);
+    add(interment);
+    add(intermentNumberText);
+    add(pnint);
+    add(pnintText);
+    add(pnliner);
+    add(pnlinerText);
+    add(pncgc);
+    add(pncgcText);
+    add(pnrmf);
+    add(pnrmfText);
+    add(monument);
+    add(monumentText);
+    add(ppPlaning);
+    add(ppPlaningText);
+    add(veteran);
+    add(veteranText);
+    add(cremated);
+    add(crematedText);
+    add(foundations);
+    add(foundationsText);
     add(add);
     add(cancel);
     pack();
@@ -67,6 +127,18 @@ public class NewEntry extends JDialog
     lastNameText.addMouseListener(new textFieldListener());
     plotNumberText.addMouseListener(new textFieldListener());
     dateText.addMouseListener(new textFieldListener());
+    sectionText.addMouseListener(new textFieldListener());
+    graveNumberText.addMouseListener(new textFieldListener());
+    intermentNumberText.addMouseListener(new textFieldListener());
+    pnintText.addMouseListener(new textFieldListener());
+    pnlinerText.addMouseListener(new textFieldListener());
+    pncgcText.addMouseListener(new textFieldListener());
+    pnrmfText.addMouseListener(new textFieldListener());
+    monumentText.addMouseListener(new textFieldListener());
+    ppPlaningText.addMouseListener(new textFieldListener());
+    veteranText.addMouseListener(new textFieldListener());
+    crematedText.addMouseListener(new textFieldListener());
+    foundationsText.addMouseListener(new textFieldListener());
     add.addActionListener(new addEntryListener());
     cancel.addActionListener(new cancelButtonListener());
   }
@@ -88,6 +160,18 @@ public class NewEntry extends JDialog
       String lastName = lastNameText.getText();
       String plotNumber = plotNumberText.getText();
       String date = dateText.getText();
+      String section = sectionText.getText();
+      String grave = graveNumberText.getText();
+      String interment = intermentNumberText.getText();
+      String pnint = pnintText.getText();
+      String pnliner = pnlinerText.getText();
+      String pncgc = pncgcText.getText();
+      String pnrmf = pnrmfText.getText();
+      String monument = monumentText.getText();
+      String ppplaning = ppPlaningText.getText();
+      String veteran = veteranText.getText();
+      String cremated = crematedText.getText();
+      String foundations = foundationsText.getText();
 
       if (firstName.equals(""))
       {
@@ -136,7 +220,7 @@ public class NewEntry extends JDialog
         lastName = capitalize(lastName);
 
         //execute an insert into our DB
-        boolean rs = stmt.execute("INSERT INTO PLOTS VALUES ('" + firstName + "'" + "," + "'" + lastName + "'" + "," + plotNumber + "," + "'" + date + "'" + ")");
+        boolean rs = stmt.execute("INSERT INTO PLOTS VALUES ('" + firstName + "'" + "," + "'" + lastName + "'" + "," + plotNumber + "," + "'" + date + "'" + "," +"'" + section+ "'" + "," + "'" + grave + "'" + "," + "'"+ interment+ "'" +"," +"'" + pnint + "'" + "," + "'" + pnliner + "'" + "," + "'" + pncgc + "'" + "," + "'" + pnrmf + "'" + "," + "'" + monument + "'" + "," + "'" + ppplaning + "'" + "," + "'" + veteran + "'" + "," + "'" + cremated + "'" + "," + "'" + foundations+ "'" +")");
 
         stmt.close();
         con.close();
