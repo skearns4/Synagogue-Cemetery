@@ -124,7 +124,7 @@ public class MainTest
 
     try // Search for valid plot number
     {
-      numEntries = MainWindow.queryDb("SELECT * FROM PLOTS WHERE PLOT_NUMBER = " + 175 + "");
+      numEntries = MainWindow.queryDb("SELECT * FROM PLOTS WHERE PLOT_NUMBER like \'" + 175 + "\'");
     }
     catch (SQLException e)
     {
@@ -145,7 +145,7 @@ public class MainTest
 
     try // Search for illegal plot number
     {
-      numEntries = MainWindow.queryDb("SELECT * FROM PLOTS WHERE PLOT_NUMBER = " + 0 + "");
+      numEntries = MainWindow.queryDb("SELECT * FROM PLOTS WHERE PLOT_NUMBER like \'" + 0 + "\'");
     }
     catch (SQLException e)
     {
@@ -165,7 +165,7 @@ public class MainTest
 
     try // Search for illegal plot number
     {
-      numEntries = MainWindow.queryDb("SELECT * FROM PLOTS WHERE PLOT_NUMBER = " + -1 + "");
+      numEntries = MainWindow.queryDb("SELECT * FROM PLOTS WHERE PLOT_NUMBER like \'" + -1 + "\'");
     }
     catch (SQLException e)
     {
