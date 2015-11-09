@@ -183,12 +183,11 @@ public class MainWindow extends JPanel
     @Override
     public void actionPerformed(ActionEvent actionEvent)
     {
-      String plot = plotField.getText();
-      int plotInt = Integer.parseInt(plot); // Read in integer plot number
+      String plot = plotField.getText(); // Plot number is stored as a string
       try // Search for plot number
       {
         dp.clear();
-        queryDb("SELECT * FROM PLOTS WHERE PLOT_NUMBER = " + plotInt + "");
+        queryDb("SELECT * FROM PLOTS WHERE PLOT_NUMBER like \'" + plot + "\'");
       }
       catch (SQLException e)
       {
