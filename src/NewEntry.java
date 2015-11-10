@@ -122,6 +122,9 @@ public class NewEntry extends JDialog
     add(add);
     add(cancel);
     pack();
+    //set default enter function
+    JRootPane rootPane = SwingUtilities.getRootPane(add);
+    rootPane.setDefaultButton(add);
     //LISTENERS
     firstNameText.addMouseListener(new textFieldListener());
     lastNameText.addMouseListener(new textFieldListener());
