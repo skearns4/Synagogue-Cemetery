@@ -358,12 +358,24 @@ public class MainWindow extends JPanel
                 //to their columns
                 String fname = rs.getString("DECEASED_FNAME");
                 String lname = rs.getString("DECEASED_LNAME");
-                String sectionNum = rs.getString("SECTION");
                 String plotNum = rs.getString("PLOT_NUMBER");
-                String graveNum = rs.getString("GRAVE");
                 String date = rs.getString("DATE_DECEASED");
+                String sectionNum = rs.getString("SECTION");
+                String graveNum = rs.getString("GRAVE");
+                String intermentNumber = rs.getString("INTERMENT_NUMBER");
+                String pInt = rs.getString("PN_INT");
+                String liner = rs.getString("PN_LINER");
+                String CGC = rs.getString("PN_CGC");
+                String RMF = rs.getString("PN_RMF");
+                String monument = rs.getString("MONUMENT");
+                String planting = rs.getString("PP_PLANTING");
+                String veteran = rs.getString("VETERAN");
+                String cremated = rs.getString("CREMATED");
+                String foundations = rs.getString("FOUNDATIONS");
 
-                dp.add(fname, lname, sectionNum, plotNum, graveNum, date, i); //add the current result to the table data
+                //Create a new entry object for this result
+                Entry en = new Entry(fname, lname, plotNum, date, sectionNum, graveNum, intermentNumber, pInt, liner, CGC, RMF, monument, planting, veteran, cremated, foundations);
+                dp.add(fname, lname, sectionNum, plotNum, graveNum, date, i, en); //add the current result to the table data
                 i++; //increment the row in the table so if multiple results returned, each is displayed in a new row
             }
             stmt.close();

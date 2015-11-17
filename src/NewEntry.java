@@ -13,7 +13,6 @@ import java.sql.Statement;
  */
 public class NewEntry extends JDialog
 {
-  private JPanel contentPane;
   private JTextField firstNameText;  //text field for first name
   private JLabel first = new JLabel("First Name:");
   private JTextField lastNameText;   //text field for last name

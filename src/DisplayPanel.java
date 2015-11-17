@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.*;
+import java.util.ArrayList;
 
 /**
  * DisplayPanel class designed to output database queries in MainWindow
@@ -12,6 +13,10 @@ public class DisplayPanel extends JPanel
 {
   //Model for the table of search results
   private DefaultTableModel model;
+
+  //Arraylist to hold the entries in the table
+  ArrayList<Entry> results = new ArrayList<>();
+
   /**
    * DisplayPanel constructor
    */
@@ -58,10 +63,50 @@ public class DisplayPanel extends JPanel
     setLayout(new GridLayout(2, 1));
     add(new JScrollPane(searchTable));
 
-    //Create a new button and add to the display panel
+    //Create panel to hold buttons
+    JPanel buttonPanel = new JPanel();
+    buttonPanel.setLayout(new GridLayout(1, 3));
+
+    //Create new buttons and add to the button panel
     JButton select = new JButton("View Entries");
-    add(select);
+    buttonPanel.add(select);
+
+    JButton print = new JButton("Print Selected Entries");
+    buttonPanel.add(print);
+
+    JButton all = new JButton("Select All");
+    buttonPanel.add(all);
+
+    //Add buttons to the display panel
+    add(buttonPanel);
     setVisible(true);
+
+    //Action listener for the all button to select all entries
+    all.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        //Set the value of column 6 to true for every row
+        for (int i = 0; i < searchTable.getRowCount(); i++) {
+          searchTable.setValueAt(true, i, 6);
+        }
+      }
+    });
+
+    //Action listener for the print button to print selected entries to a text file
+    print.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        //determine if a row is selected
+        for (int i = 0; i < searchTable.getRowCount(); i++) {
+          Boolean checked = Boolean.valueOf(searchTable.getValueAt(i, 6).toString());
+
+          //print each selected entry to a text file
+          if (checked) {
+            results.get(i).print();
+          }
+        }
+      }
+    });
 
     //Action listener for the select button to view checked search results
     select.addActionListener(new ActionListener() {
@@ -71,11 +116,12 @@ public class DisplayPanel extends JPanel
         //determine if a row is selected
         for (int i = 0; i < searchTable.getRowCount(); i++) {
           Boolean checked = Boolean.valueOf(searchTable.getValueAt(i, 6).toString());
-          String col = searchTable.getValueAt(i, 1).toString();
 
           //display an entry view/edit box for each selected entry
           if (checked) {
-            JOptionPane.showMessageDialog(null, col);
+            //New ContentPane
+            EditEntry edit = new EditEntry(results.get(i));
+            edit.setVisible(true);
           }
         }
       }
@@ -93,9 +139,11 @@ public class DisplayPanel extends JPanel
    * @param gn  grave number
    * @param d   date
    * @param num number of rows
+   * @param en Entry object of the result being added
    */
-  public void add(String fn, String ln, String sn, String pn, String gn, String d, int num)
+  public void add(String fn, String ln, String sn, String pn, String gn, String d, int num, Entry en)
   {
+    results.add(num, en); // Add the full entry data to the arraylist
     model.addRow(new Object[0]);
     model.setValueAt(fn, num, 0);
     model.setValueAt(ln, num, 1);
