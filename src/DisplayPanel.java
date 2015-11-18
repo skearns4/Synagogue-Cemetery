@@ -3,7 +3,6 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.lang.*;
 import java.util.ArrayList;
 
 /**
@@ -15,17 +14,20 @@ public class DisplayPanel extends JPanel
   private DefaultTableModel model;
 
   //Arraylist to hold the entries in the table
-  ArrayList<Entry> results = new ArrayList<>();
+  ArrayList<Entry> results = new ArrayList<Entry>();
 
   /**
    * DisplayPanel constructor
    */
   public DisplayPanel()
   {
-    model = new DefaultTableModel() {
+    model = new DefaultTableModel()
+    {
       //Switch statement specifying first 6 rows as strings, and the last row to be booleans (checkboxes)
-      public Class<?> getColumnClass(int column) {
-        switch (column) {
+      public Class<?> getColumnClass(int column)
+      {
+        switch (column)
+        {
           case 0:
             return String.class;
           case 1:
@@ -47,7 +49,7 @@ public class DisplayPanel extends JPanel
     };
 
     //Initialize table and set model
-    JTable searchTable = new JTable();
+    final JTable searchTable = new JTable();
     searchTable.setModel(model);
 
     //Add columns with appropriate headings to the table
@@ -82,26 +84,33 @@ public class DisplayPanel extends JPanel
     setVisible(true);
 
     //Action listener for the all button to select all entries
-    all.addActionListener(new ActionListener() {
+    all.addActionListener(new ActionListener()
+    {
       @Override
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(ActionEvent e)
+      {
         //Set the value of column 6 to true for every row
-        for (int i = 0; i < searchTable.getRowCount(); i++) {
+        for (int i = 0; i < searchTable.getRowCount(); i++)
+        {
           searchTable.setValueAt(true, i, 6);
         }
       }
     });
 
     //Action listener for the print button to print selected entries to a text file
-    print.addActionListener(new ActionListener() {
+    print.addActionListener(new ActionListener()
+    {
       @Override
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(ActionEvent e)
+      {
         //determine if a row is selected
-        for (int i = 0; i < searchTable.getRowCount(); i++) {
+        for (int i = 0; i < searchTable.getRowCount(); i++)
+        {
           Boolean checked = Boolean.valueOf(searchTable.getValueAt(i, 6).toString());
 
           //print each selected entry to a text file
-          if (checked) {
+          if (checked)
+          {
             results.get(i).print();
           }
         }
@@ -109,16 +118,20 @@ public class DisplayPanel extends JPanel
     });
 
     //Action listener for the select button to view checked search results
-    select.addActionListener(new ActionListener() {
+    select.addActionListener(new ActionListener()
+    {
       @Override
-      public void actionPerformed(ActionEvent e) {
+      public void actionPerformed(ActionEvent e)
+      {
 
         //determine if a row is selected
-        for (int i = 0; i < searchTable.getRowCount(); i++) {
+        for (int i = 0; i < searchTable.getRowCount(); i++)
+        {
           Boolean checked = Boolean.valueOf(searchTable.getValueAt(i, 6).toString());
 
           //display an entry view/edit box for each selected entry
-          if (checked) {
+          if (checked)
+          {
             //New ContentPane
             EditEntry edit = new EditEntry(results.get(i));
             edit.setVisible(true);
@@ -139,7 +152,7 @@ public class DisplayPanel extends JPanel
    * @param gn  grave number
    * @param d   date
    * @param num number of rows
-   * @param en Entry object of the result being added
+   * @param en  Entry object of the result being added
    */
   public void add(String fn, String ln, String sn, String pn, String gn, String d, int num, Entry en)
   {
@@ -161,7 +174,8 @@ public class DisplayPanel extends JPanel
   public void clear()
   {
     int numRows = model.getRowCount();
-    for (int i = 0; i < numRows; i++){
+    for (int i = 0; i < numRows; i++)
+    {
       model.removeRow(i);
     }
   }

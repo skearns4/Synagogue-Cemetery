@@ -27,23 +27,23 @@ public class NewEntry extends JDialog
   private JLabel grave = new JLabel("Grave Number:");
   private JTextField intermentNumberText;       //text field for interment number
   private JLabel interment = new JLabel("Interment Number:");
-  private JTextField pnintText;       //text field for pn_int
+  private JTextField pnintText;      //text field for pn_int
   private JLabel pnint = new JLabel("PN_Int:");
-  private JTextField pnlinerText;       //text field for pn_liner
+  private JTextField pnlinerText;    //text field for pn_liner
   private JLabel pnliner = new JLabel("PN_Liner:");
-  private JTextField pncgcText;       //text field for pn_cgc
+  private JTextField pncgcText;      //text field for pn_cgc
   private JLabel pncgc = new JLabel("PN_CGC:");
-  private JTextField pnrmfText;       //text field for pn_rmf
+  private JTextField pnrmfText;      //text field for pn_rmf
   private JLabel pnrmf = new JLabel("PN_RMF:");
-  private JTextField monumentText;       //text field for monument
+  private JTextField monumentText;   //text field for monument
   private JLabel monument = new JLabel("Monument:");
-  private JTextField ppPlaningText;       //text field for pp_planning
+  private JTextField ppPlaningText;  //text field for pp_planning
   private JLabel ppPlaning = new JLabel("PP_Planning:");
-  private JTextField veteranText;       //text field for veteran
+  private JTextField veteranText;    //text field for veteran
   private JLabel veteran = new JLabel("Veteran:");
-  private JTextField foundationsText;       //text field for foundations
+  private JTextField foundationsText;//text field for foundations
   private JLabel cremated = new JLabel("Cremated:");
-  private JTextField crematedText;       //text field for cremated
+  private JTextField crematedText;   //text field for cremated
   private JLabel foundations = new JLabel("Foundations:");
   private JButton add;               //button to add entry with text field arguments
   private JButton cancel;            //cancel new entry
@@ -222,7 +222,7 @@ public class NewEntry extends JDialog
         lastName = capitalize(lastName);
 
         //execute an insert into our DB
-        boolean rs = stmt.execute("INSERT INTO PLOTS VALUES ('" + firstName + "'" + "," + "'" + lastName + "'" + "," + plotNumber + "," + "'" + date + "'" + "," +"'" + section+ "'" + "," + "'" + grave + "'" + "," + "'"+ interment+ "'" +"," +"'" + pnint + "'" + "," + "'" + pnliner + "'" + "," + "'" + pncgc + "'" + "," + "'" + pnrmf + "'" + "," + "'" + monument + "'" + "," + "'" + ppplaning + "'" + "," + "'" + veteran + "'" + "," + "'" + cremated + "'" + "," + "'" + foundations+ "'" +")");
+        boolean rs = stmt.execute("INSERT INTO PLOTS VALUES ('" + firstName + "'" + "," + "'" + lastName + "'" + "," + plotNumber + "," + "'" + date + "'" + "," + "'" + section + "'" + "," + "'" + grave + "'" + "," + "'" + interment + "'" + "," + "'" + pnint + "'" + "," + "'" + pnliner + "'" + "," + "'" + pncgc + "'" + "," + "'" + pnrmf + "'" + "," + "'" + monument + "'" + "," + "'" + ppplaning + "'" + "," + "'" + veteran + "'" + "," + "'" + cremated + "'" + "," + "'" + foundations + "'" + ")");
 
         stmt.close();
         con.close();
