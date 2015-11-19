@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Created by brittanyregrut on 11/17/15.
@@ -14,15 +16,6 @@ public class EditEntry extends JDialog
   private JLabel sectionLabel = new JLabel("Section: ");
   private JLabel graveNumberLabel = new JLabel("Grave Number: ");
   private JLabel intermentNumberLabel = new JLabel("Interment Number: ");
-  private JLabel pIntLabel;
-  private JLabel linerLabel = new JLabel("Liner? ");
-  private JLabel CGCLabel = new JLabel("Cemetery Ground Care? ");
-  private JLabel RMFLabel = new JLabel("Road Maintenance Fee? ");
-  private JLabel monumentLabel = new JLabel("Monument? ");
-  private JLabel plantingLabel = new JLabel("Perpetual Planting Fee? ");
-  private JLabel veteranLabel = new JLabel("Veteran? ");
-  private JLabel crematedLabel = new JLabel("Cremated? ");
-  private JLabel foundationsLabel;
   private JTextField firstNameField;
   private JTextField lastNameField;
   private JTextField plotNumberField;
@@ -41,7 +34,7 @@ public class EditEntry extends JDialog
   private JTextArea CGCNotes;
   private JTextArea RMFNotes;
   private JTextArea monumentNotes;
-  private JTextArea plantingNotes;
+  private JButton save;
 
 
   /**
@@ -56,7 +49,7 @@ public class EditEntry extends JDialog
     Dimension min = new Dimension(width, height);
     setMinimumSize(min);
     setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-    setLayout(new GridLayout(7, 2));
+    setLayout(new GridLayout(13, 2));
     setModal(true);
 
     //Initialize Text Fields
@@ -69,6 +62,7 @@ public class EditEntry extends JDialog
     intermentNumberField = new JTextField(en.getIntermentNumber());
 
     //Initialize Checkboxes
+    //Initialize Liner
     boolean liner = false;
     String linerText = " ";
     if (en.getLiner().equals("Liner"))
@@ -79,9 +73,69 @@ public class EditEntry extends JDialog
     {
       linerText = en.getLiner();
     }
-    linerBox = new JCheckBox("Liner: ", liner);
+    linerBox = new JCheckBox("Liner?", liner);
     linerNotes = new JTextArea(linerText);
 
+    //Initialize CGC
+    boolean cgc = false;
+    String cgcText = " ";
+    if (en.getCGC().equals("CGC"))
+    {
+      cgc = true;
+    }
+    else
+    {
+      cgcText = en.getCGC();
+    }
+    CGCBox = new JCheckBox("Cemetery Ground Care?", cgc);
+    CGCNotes = new JTextArea(cgcText);
+
+    //Initialize RMF
+    boolean rmf = false;
+    String rmfText = " ";
+    if (en.getRMF().equals("RMF")){
+      rmf = true;
+    }
+    else
+    {
+      rmfText = en.getRMF();
+    }
+    RMFBox = new JCheckBox("Road Maintenance Fee?", rmf);
+    RMFNotes = new JTextArea(rmfText);
+
+    //Initialize Monument
+    boolean monument = false;
+    String monumentText = " ";
+    if (!(en.getMonument().equals(" "))){
+      monument = true;
+      monumentText = en.getMonument();
+    }
+    monumentBox = new JCheckBox("Monument?", monument);
+    monumentNotes = new JTextArea(monumentText);
+
+    //Initialize Perpetual Planting
+    boolean planting = false;
+    if (en.getPlanting().equals("PP")){
+      planting = true;
+    }
+    plantingBox = new JCheckBox("Perpetual Planting?", planting);
+
+    //Initialize Veteran
+    boolean veteran = false;
+    if (en.getVeteran().equals("Veteran")){
+      veteran = true;
+    }
+    veteranBox = new JCheckBox("Veteran?", veteran);
+
+    //Initialize Cremated
+    boolean cremated = false;
+    if (en.getCremated().equals("Cremated")){
+      cremated = true;
+    }
+    crematedBox = new JCheckBox("Cremated?", cremated);
+
+    //Initialize Button
+    save = new JButton("Save Changes");
 
     //stylize
     Color backgroundColor = new Color(153, 204, 255); //initialize main color
@@ -103,9 +157,26 @@ public class EditEntry extends JDialog
     add(graveNumberField);
     add(intermentNumberLabel);
     add(intermentNumberField);
-    add(linerLabel);
     add(linerBox);
     add(linerNotes);
+    add(CGCBox);
+    add(CGCNotes);
+    add(RMFBox);
+    add(RMFNotes);
+    add(monumentBox);
+    add(monumentNotes);
+    add(plantingBox);
+    add(veteranBox);
+    add(crematedBox);
+    add(save);
     pack();
+
+    //Action Listener
+    save.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        //Save changes back to database
+      }
+    });
   }
 }
