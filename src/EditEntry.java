@@ -159,7 +159,7 @@ public class EditEntry extends JDialog
     add(crematedBox);
     add(save);
     pack();
-
+    
     //Action Listener
     save.addActionListener(new ActionListener()
     {
@@ -176,16 +176,56 @@ public class EditEntry extends JDialog
         String notes1 = linerNotes.getText();
         String notes2 = CGCNotes.getText();
         String notes3 = RMFNotes.getText();
-        boolean cgc = CGCBox.isSelected();  //CGC
-        boolean rmf = RMFBox.isSelected();  //RMF
-        boolean monument = monumentBox.isSelected();  //Monument
-        boolean planting = plantingBox.isSelected();  //PP
-        boolean liner = linerBox.isSelected();     //Liner
-        boolean vet = veteranBox.isSelected();   //Veteran
-        boolean cremated = crematedBox.isSelected();  //PP
+        String cgc;
+        if (CGCBox.isSelected()){
+          cgc = "CGC";
+        }
+        else{
+          cgc = " ";
+        }
+        String rmf;
+        if(RMFBox.isSelected()){
+          rmf = "RMF";
+        }
+        else{
+          rmf = " ";
+        }
+        String monument;
+        if (monumentBox.isSelected()){
+          monument = monumentNotes.getText();
+        }
+        else{
+          monument = " ";
+        }
+        String planting;
+        if (plantingBox.isSelected()){
+          planting = "PP";
+        }
+        else{
+          planting = " ";
+        }
+        String liner;
+        if (linerBox.isSelected()){
+          liner = "Liner";
+        }
+        else{
+          liner = " ";
+        }
+        String vet;
+        if (veteranBox.isSelected()){
+          vet = "Veteran";
+        }
+        else{
+          vet = " ";
+        }
+        String cremated;
+        if (crematedBox.isSelected()){
+          cremated = "Cremated";
+        }
+        else{
+          cremated = " ";
+        }
 
-
-        System.out.println(crematedBox);
 
         try
         {

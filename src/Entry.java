@@ -240,10 +240,6 @@ public class Entry
   {
     return (this.lastName + ", " + this.firstName + ": " + this.plotNumber + "-" +
         this.section + "-" + this.graveNumber + ", " + this.intermentNumber
-        /*this.graveNumber+", "+this.graveNumber+", "+this.graveNumber+", "+
-        this.graveNumber+", "+this.graveNumber+", "+this.graveNumber+", "+
-        this.graveNumber+", "+this.graveNumber+", "+this.graveNumber+", "+
-        this.graveNumber+", "+this.graveNumber+", "+this.graveNumber+", "+*/
     );
   }
 }
