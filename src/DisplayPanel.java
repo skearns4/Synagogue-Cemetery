@@ -103,6 +103,9 @@ public class DisplayPanel extends JPanel
       @Override
       public void actionPerformed(ActionEvent e)
       {
+        //AL of items that are checked true - will be printed
+        ArrayList<String> toPrint = new ArrayList<String>();
+
         //determine if a row is selected
         for (int i = 0; i < searchTable.getRowCount(); i++)
         {
@@ -173,10 +176,9 @@ public class DisplayPanel extends JPanel
    */
   public void clear()
   {
-    int numRows = model.getRowCount();
-    for (int i = 0; i < numRows; i++)
-    {
-      model.removeRow(i);
-    }
+    model.setNumRows(0);
+    results.clear();
   }
+
+
 }
