@@ -64,7 +64,12 @@ public class MainWindow extends JPanel
     createButton = new JButton("Create New Entry");
     createButton.addActionListener(new createListener());
     createButton.setFont(mainFont); //set create button font
-    createPanel.add(createButton);
+
+    JPanel createButtonPanel = new JPanel();
+    createButton.setSize(new Dimension(25,25));
+    createButtonPanel.add(createButton);
+
+    createPanel.add(createButtonPanel);
     add(createPanel);
     createPanel.setVisible(true);
 
@@ -264,16 +269,16 @@ public class MainWindow extends JPanel
       boolean added = false;
       if (!section.equals(""))
       {
-        query.append("SELECT * FROM PLOTS WHERE SECTION like \'%" + section + "%\'");
+        query.append("SELECT * FROM PLOTS WHERE UPPER(SECTION) like UPPER('" + section + "')");
         added = true;
       }
       if (!plot.equals(""))
       {
         if (added)
-          query.append(" AND PLOT_NUMBER like " + plot);
+          query.append(" AND UPPER(PLOT_NUMBER) like UPPER('" + plot + "')");
         else
         {
-          query.append("SELECT * FROM PLOTS WHERE PLOT_NUMBER like " + plot);
+          query.append("SELECT * FROM PLOTS WHERE UPPER(PLOT_NUMBER) like UPPER('" + plot + "')");
           added = true;
         }
 
@@ -281,9 +286,9 @@ public class MainWindow extends JPanel
       if (!grave.equals(""))
       {
         if (added)
-          query.append(" AND GRAVE like " + grave);
+          query.append(" AND UPPER(GRAVE) like UPPER('" + grave + "')");
         else
-          query.append("SELECT * FROM PLOTS WHERE GRAVE like " + plot);
+          query.append("SELECT * FROM PLOTS WHERE UPPER(GRAVE) like UPPER('" + plot + "')");
       }
       try // Search for plot number
       {

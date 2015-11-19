@@ -152,52 +152,67 @@ public class NewEntry extends JDialog
       String grave = graveNumberText.getText();
       String interment = intermentNumberText.getText();
       String pnliner;
-      if (linerBox.isSelected()){
+
+      if (linerBox.isSelected())
+      {
         pnliner = "Liner";
       }
-      else{
+      else
+      {
         pnliner = " ";
       }
       String pncgc;
-      if (cgcBox.isSelected()){
+      if (cgcBox.isSelected())
+      {
         pncgc = "CGC";
       }
-      else{
+      else
+      {
         pncgc = " ";
       }
       String pnrmf;
-      if (rmfBox.isSelected()){
+      if (rmfBox.isSelected())
+      {
         pnrmf = "RMF";
       }
-      else{
+      else
+      {
         pnrmf = " ";
       }
       String monument;
-      if (monumentBox.isSelected()){
+      if (monumentBox.isSelected())
+      {
         monument = monumentNotes.getText();
       }
-      else{
+      else
+      {
         monument = " ";
       }
       String ppplanting;
-      if (plantingBox.isSelected()){
+      if (plantingBox.isSelected())
+      {
         ppplanting = "PP";
       }
-      else{
+      else
+      {
         ppplanting = " ";
       }
       String veteran;
-      if (veteranBox.isSelected()){
+      if (veteranBox.isSelected())
+      {
         veteran = "Veteran";
       }
-      else{
+      else
+      {
         veteran = " ";
       }
       String cremated;
-      if (crematedBox.isSelected()){
+      if (crematedBox.isSelected())
+      {
         cremated = "Cremated";
       }
-      else{
+      else
+      {
         cremated = " ";
       }
       String lnotes = linerNotes.getText();
@@ -255,7 +270,17 @@ public class NewEntry extends JDialog
         //execute an insert into our DB
         //ADD MONUMENT_NOTES AND MNOTES TO THIS STATEMENT
         //REMOVE FOUNDATIONS AND PNINT (don't have a clue what these mean so deleted)
-        boolean rs = stmt.execute("INSERT INTO PLOTS (DECEASED_FNAME, DECEASED_LNAME, PLOT_NUMBER, DATE_DECEASED, SECTION, GRAVE, INTERMENT_NUMBER, PN_INT, PN_LINER, PN_CGC, PN_RMF, MONUMENT, PP_PLANTING, VETERAN, CREMATED, FOUNDATIONS, LINER_NOTES, RMF_NOTES, CGC_NOTES) VALUES ('" + firstName + "'" + "," + "'" + lastName + "'" + ",'" + plotNumber + "'," + "'" + date + "'" + "," + "'" + section + "'" + "," + "'" + grave + "'" + "," + "'" + interment + "'" + "," + "'" + pnint + "'" + "," + "'" + pnliner + "'" + "," + "'" + pncgc + "'" + "," + "'" + pnrmf + "'" + "," + "'" + monument + "'" + "," + "'" + ppplanting + "'" + "," + "'" + veteran + "'" + "," + "'" + cremated + "'" + "," + "'" + foundations + "'" + ",'" + lnotes + "','" + cnotes + "','" + rnotes + "'" + ");");
+        boolean rs = stmt.execute("" +
+            "INSERT INTO PLOTS (DECEASED_FNAME, DECEASED_LNAME, " +
+            "PLOT_NUMBER, DATE_DECEASED, SECTION, GRAVE, INTERMENT_NUMBER, PN_LINER, " +
+            "PN_CGC, PN_RMF, MONUMENT, PP_PLANTING, VETERAN, CREMATED, LINER_NOTES, " +
+            "RMF_NOTES, CGC_NOTES, MONUMENT_NOTES) " +
+            "VALUES ('" + firstName + "'," + "'" + lastName + "'," + "'" + plotNumber + "'," +
+            "'" + date + "'," + "'" + section + "'," + "'" + grave + "'," + "'" + interment + "'," +
+            "'" + pnliner + "'," + "'" + pncgc + "'," + "'" + pnrmf + "'," + "'" + monument + "'," +
+            "'" + ppplanting + "'," + "'" + veteran + "'," + "'" + cremated + "'," + "'" + lnotes + "'," +
+            "'" + cnotes + "'," + "'" + rnotes + "'," +"'"+ mnotes + "');"
+        );
         stmt.close();
         con.close();
       }
