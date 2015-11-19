@@ -250,8 +250,8 @@ public class NewEntry extends JDialog
       }
       if (date.equals(""))
       {
-        dateText.setForeground(Color.RED);
-        dateText.setText("PLEASE ENTER A DATE");
+        //dateText.setForeground(Color.RED);
+        //dateText.setText("PLEASE ENTER A DATE");
       }
       else if (dateText.getForeground() == Color.BLACK)
       {
@@ -270,17 +270,34 @@ public class NewEntry extends JDialog
         //execute an insert into our DB
         //ADD MONUMENT_NOTES AND MNOTES TO THIS STATEMENT
         //REMOVE FOUNDATIONS AND PNINT (don't have a clue what these mean so deleted)
-        boolean rs = stmt.execute("" +
-            "INSERT INTO PLOTS (DECEASED_FNAME, DECEASED_LNAME, " +
-            "PLOT_NUMBER, DATE_DECEASED, SECTION, GRAVE, INTERMENT_NUMBER, PN_LINER, " +
-            "PN_CGC, PN_RMF, MONUMENT, PP_PLANTING, VETERAN, CREMATED, LINER_NOTES, " +
-            "RMF_NOTES, CGC_NOTES, MONUMENT_NOTES) " +
-            "VALUES ('" + firstName + "'," + "'" + lastName + "'," + "'" + plotNumber + "'," +
-            "'" + date + "'," + "'" + section + "'," + "'" + grave + "'," + "'" + interment + "'," +
-            "'" + pnliner + "'," + "'" + pncgc + "'," + "'" + pnrmf + "'," + "'" + monument + "'," +
-            "'" + ppplanting + "'," + "'" + veteran + "'," + "'" + cremated + "'," + "'" + lnotes + "'," +
-            "'" + cnotes + "'," + "'" + rnotes + "'," +"'"+ mnotes + "');"
-        );
+        if (!date.equals(""))
+        {
+          boolean rs = stmt.execute("" +
+              "INSERT INTO PLOTS (DECEASED_FNAME, DECEASED_LNAME, " +
+              "PLOT_NUMBER, DATE_DECEASED, SECTION, GRAVE, INTERMENT_NUMBER, PN_LINER, " +
+              "PN_CGC, PN_RMF, MONUMENT, PP_PLANTING, VETERAN, CREMATED, LINER_NOTES, " +
+              "RMF_NOTES, CGC_NOTES, MONUMENT_NOTES) " +
+              "VALUES ('" + firstName + "'," + "'" + lastName + "'," + "'" + plotNumber + "'," +
+              "'" + date + "'," + "'" + section + "'," + "'" + grave + "'," + "'" + interment + "'," +
+              "'" + pnliner + "'," + "'" + pncgc + "'," + "'" + pnrmf + "'," + "'" + monument + "'," +
+              "'" + ppplanting + "'," + "'" + veteran + "'," + "'" + cremated + "'," + "'" + lnotes + "'," +
+              "'" + cnotes + "'," + "'" + rnotes + "'," + "'" + mnotes + "');"
+          );
+        }
+        else
+        {
+          boolean rs = stmt.execute("" +
+              "INSERT INTO PLOTS (DECEASED_FNAME, DECEASED_LNAME, " +
+              "PLOT_NUMBER, DATE_DECEASED, SECTION, GRAVE, INTERMENT_NUMBER, PN_LINER, " +
+              "PN_CGC, PN_RMF, MONUMENT, PP_PLANTING, VETERAN, CREMATED, LINER_NOTES, " +
+              "RMF_NOTES, CGC_NOTES, MONUMENT_NOTES) " +
+              "VALUES ('" + firstName + "'," + "'" + lastName + "'," + "'" + plotNumber + "'," +
+              "NULL," + "'" + section + "'," + "'" + grave + "'," + "'" + interment + "'," +
+              "'" + pnliner + "'," + "'" + pncgc + "'," + "'" + pnrmf + "'," + "'" + monument + "'," +
+              "'" + ppplanting + "'," + "'" + veteran + "'," + "'" + cremated + "'," + "'" + lnotes + "'," +
+              "'" + cnotes + "'," + "'" + rnotes + "'," + "'" + mnotes + "');"
+          );
+        }
         stmt.close();
         con.close();
       }
