@@ -250,8 +250,7 @@ public class NewEntry extends JDialog
       }
       if (date.equals(""))
       {
-        //dateText.setForeground(Color.RED);
-        //dateText.setText("PLEASE ENTER A DATE");
+
       }
       else if (dateText.getForeground() == Color.BLACK)
       {
