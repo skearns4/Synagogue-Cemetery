@@ -19,8 +19,12 @@ public class Entry
   private String veteran;
   private String cremated;
   private String foundations;
+  private String monumentNotes;
+  private String cgcNotes;
+  private String rmfNotes;
+  private String linerNotes;
 
-  public Entry(String fn, String ln, String pn, String date, String sec, String grave, String intermentNum, String pnInt, String pnLiner, String pnCGC, String pnRMF, String mon, String ppPlanting, String vet, String crem, String found)
+  public Entry(String fn, String ln, String pn, String date, String sec, String grave, String intermentNum, String pnInt, String pnLiner, String pnCGC, String pnRMF, String mon, String ppPlanting, String vet, String crem, String found, String mnotes, String cnotes, String rnotes, String lnotes)
   {
     this.firstName = fn;
     this.lastName = ln;
@@ -38,6 +42,10 @@ public class Entry
     this.veteran = vet;
     this.cremated = crem;
     this.foundations = found;
+    this.monumentNotes = mnotes;
+    this.cgcNotes = cnotes;
+    this.rmfNotes = rnotes;
+    this.linerNotes = lnotes;
   }
 
   //Getter methods
@@ -232,6 +240,23 @@ public class Entry
       return veteran;
     }
   }
+
+  public String getMonumentNotes() {
+    return monumentNotes;
+  }
+
+  public String getCgcNotes() {
+    return cgcNotes;
+  }
+
+  public String getRmfNotes() {
+    return rmfNotes;
+  }
+
+  public String getLinerNotes() {
+    return linerNotes;
+  }
+
 
   /**
    * Prints entry to a text file

@@ -68,31 +68,28 @@ public class EditEntry extends JDialog
     //Initialize Checkboxes
     //Initialize Liner
     boolean liner = false;
-    String linerText = " ";
     if (en.getLiner().equals("Liner"))
       liner = true;
-    else
-      linerText = en.getLiner();
+
+    String linerText = en.getLinerNotes();
     linerBox = new JCheckBox("Liner?", liner);
     linerNotes = new JTextField(linerText);
 
     //Initialize CGC
     boolean cgc = false;
-    String cgcText = " ";
     if (en.getCGC().equals("CGC"))
       cgc = true;
-    else
-      cgcText = en.getCGC();
+
+    String cgcText = en.getCgcNotes();
     CGCBox = new JCheckBox("Cemetery Ground Care?", cgc);
     CGCNotes = new JTextField(cgcText);
 
     //Initialize RMF
     boolean rmf = false;
-    String rmfText = " ";
     if (en.getRMF().equals("RMF"))
       rmf = true;
-    else
-      rmfText = en.getRMF();
+
+    String rmfText = en.getRmfNotes();
     RMFBox = new JCheckBox("Road Maintenance Fee?", rmf);
     RMFNotes = new JTextField(rmfText);
 
@@ -238,7 +235,7 @@ public class EditEntry extends JDialog
               "', PLOT_NUMBER='" + plot + "', DATE_DECEASED='" + date + "', SECTION='" + section + "', GRAVE='" + grave +
               "', INTERMENT_NUMBER='" + intern + "', PN_LINER='" + liner + "', PN_CGC='" + cgc + "', PN_RMF='" + rmf +
               "', MONUMENT='" + monument + "', PP_PLANTING='" + planting + "', VETERAN='" + vet + "', CREMATED='" + cremated +
-              "', FOUNDATIONS=NULL, LINER_NOTES='" + notes1 + "', RMF_NOTES='" + notes2 + "', CGC_NOTES='" + notes3 +
+              "', FOUNDATIONS=NULL, LINER_NOTES='" + linerNotes + "', RMF_NOTES='" + RMFNotes + "', CGC_NOTES='" + CGCNotes +
               "' WHERE ( DECEASED_FNAME LIKE '" + en.getFirstName() + "' AND DECEASED_LNAME LIKE '" + en.getLastName() +
               "' AND PLOT_NUMBER LIKE '" + en.getPlotNumber() + "' AND SECTION LIKE '" + en.getSection() + "' AND GRAVE LIKE '" + en.getGraveNumber() + "');");
 
