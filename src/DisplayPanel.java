@@ -3,7 +3,11 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * DisplayPanel class designed to output database queries in MainWindow
@@ -15,6 +19,9 @@ public class DisplayPanel extends JPanel
 
   //Arraylist to hold the entries in the table
   ArrayList<Entry> results = new ArrayList<Entry>();
+
+  //AL of items that are checked true - will be printed
+  ArrayList<Entry> toPrint = new ArrayList<Entry>();
 
   /**
    * DisplayPanel constructor
@@ -73,7 +80,7 @@ public class DisplayPanel extends JPanel
     JButton select = new JButton("View Entries");
     buttonPanel.add(select);
 
-    JButton print = new JButton("Print Selected Entries");
+    final JButton print = new JButton("Print Selected Entries");
     buttonPanel.add(print);
 
     JButton all = new JButton("Select All");
@@ -103,10 +110,9 @@ public class DisplayPanel extends JPanel
       @Override
       public void actionPerformed(ActionEvent e)
       {
-        //AL of items that are checked true - will be printed
-        ArrayList<String> toPrint = new ArrayList<String>();
+        //make sure that the print array is empty
+        toPrint.clear();
 
-        //determine if a row is selected
         for (int i = 0; i < searchTable.getRowCount(); i++)
         {
           Boolean checked = Boolean.valueOf(searchTable.getValueAt(i, 6).toString());
@@ -114,9 +120,10 @@ public class DisplayPanel extends JPanel
           //print each selected entry to a text file
           if (checked)
           {
-            results.get(i).print();
+            toPrint.add(results.get(i));
           }
         }
+        print(toPrint);
       }
     });
 
@@ -180,5 +187,41 @@ public class DisplayPanel extends JPanel
     results.clear();
   }
 
+  /**
+   * Writes every object that was checked in the table to a newly created textfile
+   * @param checked : an arraylist of DB Entry objects
+   */
+  public void print(ArrayList<Entry> checked)
+  {
+    //make sure theyve selected items so we dont create an empty file
+    if(!checked.isEmpty())
+    {
+      //get the current time/date
+      DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH:mm");
+      try
+      {
+        //new file. name it the date + time
+        PrintWriter writer = new PrintWriter(dateFormat.format(new Date()) + ".txt", "UTF-8");
+        //write a header
+        writer.println("----------------------------------------------------------");
+        writer.format("%-16s%-16s%-16s%-16s\n", "LAST", "FIRST", "PLOT", "INTERNMENT");
+        writer.println("----------------------------------------------------------");
+        //for every checked item, write the info to the file
+        for (Entry e : checked)
+          writer.format("%-16s%-16s%-16s%-16s\n", e.getLastName(), e.getFirstName(), e.getSection() + "-" + e.getPlotNumber() + "-" + e.getGraveNumber(), e.getIntermentNumber());
+        //close file
+        writer.close();
+      }
+      //for some reason java made me do this even though it's creating a new file...
+      catch (FileNotFoundException e)
+      {
+        e.printStackTrace();
+      }
+      catch (UnsupportedEncodingException e)
+      {
+        e.printStackTrace();
+      }
+    }
 
+  }
 }

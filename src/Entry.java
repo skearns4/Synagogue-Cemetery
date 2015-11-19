@@ -204,8 +204,14 @@ public class Entry
   /**
    * Prints entry to a text file
    */
-  public void print()
+  public String toString()
   {
-
+    return (this.lastName+", "+this.firstName+": "+this.plotNumber+"-"+
+        this.section+"-"+     this.graveNumber+", "+this.intermentNumber
+        /*this.graveNumber+", "+this.graveNumber+", "+this.graveNumber+", "+
+        this.graveNumber+", "+this.graveNumber+", "+this.graveNumber+", "+
+        this.graveNumber+", "+this.graveNumber+", "+this.graveNumber+", "+
+        this.graveNumber+", "+this.graveNumber+", "+this.graveNumber+", "+*/
+    );
   }
 }
