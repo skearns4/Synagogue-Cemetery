@@ -238,7 +238,7 @@ public class EditEntry extends JDialog
               "', PLOT_NUMBER='" + plot + "', DATE_DECEASED='" + date + "', SECTION='" + section + "', GRAVE='" + grave +
               "', INTERMENT_NUMBER='" + intern + "', PN_LINER='" + liner + "', PN_CGC='" + cgc + "', PN_RMF='" + rmf +
               "', MONUMENT='" + monument + "', PP_PLANTING='" + planting + "', VETERAN='" + vet + "', CREMATED='" + cremated +
-              "', FOUNDATIONS=NULL, NOTES_1='" + notes1 + "', NOTES_2='" + notes2 + "', NOTES_3='" + notes3 +
+              "', FOUNDATIONS=NULL, LINER_NOTES='" + notes1 + "', RMF_NOTES='" + notes2 + "', CGC_NOTES='" + notes3 +
               "' WHERE ( DECEASED_FNAME LIKE '" + en.getFirstName() + "' AND DECEASED_LNAME LIKE '" + en.getLastName() +
               "' AND PLOT_NUMBER LIKE '" + en.getPlotNumber() + "' AND SECTION LIKE '" + en.getSection() + "' AND GRAVE LIKE '" + en.getGraveNumber() + "');");
 

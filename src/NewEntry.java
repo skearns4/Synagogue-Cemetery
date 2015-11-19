@@ -27,30 +27,17 @@ public class NewEntry extends JDialog
   private JLabel grave = new JLabel("Grave Number:");
   private JTextField intermentNumberText;       //text field for interment number
   private JLabel interment = new JLabel("Interment Number:");
-  private JTextField pnintText;      //text field for pn_int
-  private JLabel pnint = new JLabel("PN_Int:");
-  private JTextField pnlinerText;    //text field for pn_liner
-  private JLabel pnliner = new JLabel("PN_Liner:");
-  private JTextField pncgcText;      //text field for pn_cgc
-  private JLabel pncgc = new JLabel("PN_CGC:");
-  private JTextField pnrmfText;      //text field for pn_rmf
-  private JLabel pnrmf = new JLabel("PN_RMF:");
-  private JTextField monumentText;   //text field for monument
-  private JLabel monument = new JLabel("Monument:");
-  private JTextField ppPlaningText;  //text field for pp_planning
-  private JLabel ppPlaning = new JLabel("PP_Planning:");
-  private JTextField veteranText;    //text field for veteran
-  private JLabel veteran = new JLabel("Veteran:");
-  private JTextField foundationsText;//text field for foundations
-  private JLabel cremated = new JLabel("Cremated:");
-  private JTextField crematedText;   //text field for cremated
-  private JLabel foundations = new JLabel("Foundations:");
-  private JTextField notes1Text;  //text field for first name
-  private JLabel notes1 = new JLabel("Notes:");
-  private JTextField notes2Text;  //text field for first name
-  private JLabel notes2 = new JLabel("Notes:");
-  private JTextField notes3Text;  //text field for first name
-  private JLabel notes3 = new JLabel("Notes:");
+  private JCheckBox linerBox;    //checkbox for liner
+  private JCheckBox cgcBox;      //checkbox for cemetery ground care
+  private JCheckBox rmfBox;      //checkbox for road maintenance fee
+  private JCheckBox monumentBox;   //checkbox for monument
+  private JCheckBox plantingBox;  //checkbox for perpetual planting
+  private JCheckBox veteranBox;    //checkbox for veteran
+  private JCheckBox crematedBox;   //checkbox for cremated
+  private JTextField linerNotes;  //text field for liner notes
+  private JTextField RMFNotes;  //text field for RMF Notes
+  private JTextField CGCNotes;  //text field for CGC Notes
+  private JTextField monumentNotes; //text field for monument notes
   private JButton add;               //button to add entry with text field arguments
   private JButton cancel;            //cancel new entry
 
@@ -76,18 +63,17 @@ public class NewEntry extends JDialog
     sectionText = new JTextField();
     graveNumberText = new JTextField();
     intermentNumberText = new JTextField();
-    pnintText = new JTextField();
-    pnlinerText = new JTextField();
-    pncgcText = new JTextField();
-    pnrmfText = new JTextField();
-    monumentText = new JTextField();
-    ppPlaningText = new JTextField();
-    veteranText = new JTextField();
-    crematedText = new JTextField();
-    foundationsText = new JTextField();
-    notes1Text = new JTextField();
-    notes2Text = new JTextField();
-    notes3Text = new JTextField();
+    linerNotes = new JTextField();
+    RMFNotes = new JTextField();
+    CGCNotes = new JTextField();
+    monumentNotes = new JTextField();
+    crematedBox = new JCheckBox("Cremated?", false);
+    plantingBox = new JCheckBox("Perpetual Planting?", false);
+    monumentBox = new JCheckBox("Monument?", false);
+    veteranBox = new JCheckBox("Veteran?", false);
+    rmfBox = new JCheckBox("Road Maintenance Fee?", false);
+    cgcBox = new JCheckBox("Cemetery Ground Care?", false);
+    linerBox = new JCheckBox("Liner?", false);
 
 
     //stylize
@@ -111,30 +97,18 @@ public class NewEntry extends JDialog
     add(graveNumberText);
     add(interment);
     add(intermentNumberText);
-    add(pnint);
-    add(pnintText);
-    add(pnliner);
-    add(pnlinerText);
-    add(pncgc);
-    add(pncgcText);
-    add(pnrmf);
-    add(pnrmfText);
-    add(monument);
-    add(monumentText);
-    add(ppPlaning);
-    add(ppPlaningText);
-    add(veteran);
-    add(veteranText);
-    add(cremated);
-    add(crematedText);
-    add(foundations);
-    add(foundationsText);
-    add(notes1);
-    add(notes1Text);
-    add(notes2);
-    add(notes2Text);
-    add(notes3);
-    add(notes3Text);
+    add(linerBox);
+    add(linerNotes);
+    add(rmfBox);
+    add(RMFNotes);
+    add(cgcBox);
+    add(CGCNotes);
+    add(monumentBox);
+    add(monumentNotes);
+    add(plantingBox);
+    add(veteranBox);
+    add(crematedBox);
+    add(new JLabel(" ")); //spacer
     add(add);
     add(cancel);
     pack();
@@ -149,18 +123,10 @@ public class NewEntry extends JDialog
     sectionText.addMouseListener(new textFieldListener());
     graveNumberText.addMouseListener(new textFieldListener());
     intermentNumberText.addMouseListener(new textFieldListener());
-    pnintText.addMouseListener(new textFieldListener());
-    pnlinerText.addMouseListener(new textFieldListener());
-    pncgcText.addMouseListener(new textFieldListener());
-    pnrmfText.addMouseListener(new textFieldListener());
-    monumentText.addMouseListener(new textFieldListener());
-    ppPlaningText.addMouseListener(new textFieldListener());
-    veteranText.addMouseListener(new textFieldListener());
-    crematedText.addMouseListener(new textFieldListener());
-    foundationsText.addMouseListener(new textFieldListener());
-    notes1Text.addMouseListener(new textFieldListener());
-    notes2Text.addMouseListener(new textFieldListener());
-    notes3Text.addMouseListener(new textFieldListener());
+    linerNotes.addMouseListener(new textFieldListener());
+    RMFNotes.addMouseListener(new textFieldListener());
+    CGCNotes.addMouseListener(new textFieldListener());
+    monumentNotes.addMouseListener(new textFieldListener());
     add.addActionListener(new addEntryListener());
     cancel.addActionListener(new cancelButtonListener());
   }
@@ -185,18 +151,59 @@ public class NewEntry extends JDialog
       String section = sectionText.getText();
       String grave = graveNumberText.getText();
       String interment = intermentNumberText.getText();
-      String pnint = pnintText.getText();
-      String pnliner = pnlinerText.getText();
-      String pncgc = pncgcText.getText();
-      String pnrmf = pnrmfText.getText();
-      String monument = monumentText.getText();
-      String ppplaning = ppPlaningText.getText();
-      String veteran = veteranText.getText();
-      String cremated = crematedText.getText();
-      String foundations = foundationsText.getText();
-      String notes1 = notes1Text.getText();
-      String notes2 = notes1Text.getText();
-      String notes3 = notes1Text.getText();
+      String pnliner;
+      if (linerBox.isSelected()){
+        pnliner = "Liner";
+      }
+      else{
+        pnliner = " ";
+      }
+      String pncgc;
+      if (cgcBox.isSelected()){
+        pncgc = "CGC";
+      }
+      else{
+        pncgc = " ";
+      }
+      String pnrmf;
+      if (rmfBox.isSelected()){
+        pnrmf = "RMF";
+      }
+      else{
+        pnrmf = " ";
+      }
+      String monument;
+      if (monumentBox.isSelected()){
+        monument = monumentNotes.getText();
+      }
+      else{
+        monument = " ";
+      }
+      String ppplanting;
+      if (plantingBox.isSelected()){
+        ppplanting = "PP";
+      }
+      else{
+        ppplanting = " ";
+      }
+      String veteran;
+      if (veteranBox.isSelected()){
+        veteran = "Veteran";
+      }
+      else{
+        veteran = " ";
+      }
+      String cremated;
+      if (crematedBox.isSelected()){
+        cremated = "Cremated";
+      }
+      else{
+        cremated = " ";
+      }
+      String lnotes = linerNotes.getText();
+      String cnotes = CGCNotes.getText();
+      String rnotes = RMFNotes.getText();
+      String mnotes = monumentNotes.getText();
 
 
       if (firstName.equals(""))
@@ -246,7 +253,9 @@ public class NewEntry extends JDialog
         lastName = capitalize(lastName);
 
         //execute an insert into our DB
-        boolean rs = stmt.execute("INSERT INTO PLOTS (DECEASED_FNAME, DECEASED_LNAME, PLOT_NUMBER, DATE_DECEASED, SECTION, GRAVE, INTERMENT_NUMBER, PN_INT, PN_LINER, PN_CGC, PN_RMF, MONUMENT, PP_PLANTING, VETERAN, CREMATED, FOUNDATIONS, NOTES_1, NOTES_2, NOTES_3) VALUES ('" + firstName + "'" + "," + "'" + lastName + "'" + ",'" + plotNumber + "'," + "'" + date + "'" + "," + "'" + section + "'" + "," + "'" + grave + "'" + "," + "'" + interment + "'" + "," + "'" + pnint + "'" + "," + "'" + pnliner + "'" + "," + "'" + pncgc + "'" + "," + "'" + pnrmf + "'" + "," + "'" + monument + "'" + "," + "'" + ppplaning + "'" + "," + "'" + veteran + "'" + "," + "'" + cremated + "'" + "," + "'" + foundations + "'" + ",'" + notes1 + "','" + notes2 + "','" + notes3 + "'" + ");");
+        //ADD MONUMENT_NOTES AND MNOTES TO THIS STATEMENT
+        //REMOVE FOUNDATIONS AND PNINT (don't have a clue what these mean so deleted)
+        boolean rs = stmt.execute("INSERT INTO PLOTS (DECEASED_FNAME, DECEASED_LNAME, PLOT_NUMBER, DATE_DECEASED, SECTION, GRAVE, INTERMENT_NUMBER, PN_INT, PN_LINER, PN_CGC, PN_RMF, MONUMENT, PP_PLANTING, VETERAN, CREMATED, FOUNDATIONS, LINER_NOTES, RMF_NOTES, CGC_NOTES) VALUES ('" + firstName + "'" + "," + "'" + lastName + "'" + ",'" + plotNumber + "'," + "'" + date + "'" + "," + "'" + section + "'" + "," + "'" + grave + "'" + "," + "'" + interment + "'" + "," + "'" + pnint + "'" + "," + "'" + pnliner + "'" + "," + "'" + pncgc + "'" + "," + "'" + pnrmf + "'" + "," + "'" + monument + "'" + "," + "'" + ppplanting + "'" + "," + "'" + veteran + "'" + "," + "'" + cremated + "'" + "," + "'" + foundations + "'" + ",'" + lnotes + "','" + cnotes + "','" + rnotes + "'" + ");");
         stmt.close();
         con.close();
       }
