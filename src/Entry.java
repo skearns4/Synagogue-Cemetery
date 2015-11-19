@@ -43,82 +43,162 @@ public class Entry
   //Getter methods
   public String getFirstName()
   {
-    return firstName;
+    if(firstName == null){
+      return " ";
+    }
+    else{
+      return firstName;
+    }
   }
 
   public String getLastName()
   {
-    return lastName;
+    if(lastName == null){
+      return " ";
+    }
+    else{
+      return lastName;
+    }
   }
 
   public String getCGC()
   {
-    return CGC;
+    if(CGC == null){
+      return " ";
+    }
+    else{
+      return CGC;
+    }
   }
 
   public String getCremated()
   {
-    return cremated;
+    if(cremated == null){
+      return " ";
+    }
+    else{
+      return cremated;
+    }
   }
 
   public String getDateDeceased()
   {
-    return dateDeceased;
+    if(dateDeceased == null){
+      return " ";
+    }
+    else{
+      return dateDeceased;
+    }
   }
 
   public String getFoundations()
   {
-    return foundations;
+    if(foundations == null){
+      return " ";
+    }
+    else{
+      return foundations;
+    }
   }
 
   public String getGraveNumber()
   {
-    return graveNumber;
+    if(graveNumber == null){
+      return " ";
+    }
+    else{
+      return graveNumber;
+    }
   }
 
   public String getIntermentNumber()
   {
-    return intermentNumber;
+    if(intermentNumber == null){
+      return " ";
+    }
+    else{
+      return intermentNumber;
+    }
   }
 
   public String getLiner()
   {
-    return liner;
+    if (liner == null){
+      return " ";
+    }
+    else{
+      return liner;
+    }
   }
 
   public String getMonument()
   {
-    return monument;
+    if(monument == null){
+      return " ";
+    }
+    else{
+      return monument;
+    }
   }
 
   public String getpInt()
   {
-    return pInt;
+    if(pInt == null){
+      return " ";
+    }
+    else{
+      return pInt;
+    }
   }
 
   public String getPlanting()
   {
-    return planting;
+    if(planting == null){
+      return " ";
+    }
+    else{
+      return planting;
+    }
   }
 
   public String getPlotNumber()
   {
-    return plotNumber;
+    if(plotNumber == null){
+      return " ";
+    }
+    else{
+      return plotNumber;
+    }
   }
 
   public String getRMF()
   {
-    return RMF;
+    if(RMF == null){
+      return " ";
+    }
+    else{
+      return RMF;
+    }
   }
 
   public String getSection()
   {
-    return section;
+    if(section == null){
+      return " ";
+    }
+    else{
+      return section;
+    }
   }
 
   public String getVeteran()
   {
-    return veteran;
+    if(veteran == null){
+      return " ";
+    }
+    else{
+      return veteran;
+    }
   }
 
   /**

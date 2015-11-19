@@ -142,7 +142,7 @@ public class DisplayPanel extends JPanel
   }
 
   /**
-   * Called when a search is performed. Called once for every result returned. Adds the fields
+   * Called when a search is performed. Called once for ever?y result returned. Adds the fields
    * for the result to be displayed to the data matrix and updates the display.
    *
    * @param fn  first name
