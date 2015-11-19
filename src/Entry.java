@@ -43,160 +43,192 @@ public class Entry
   //Getter methods
   public String getFirstName()
   {
-    if(firstName == null){
+    if (firstName == null)
+    {
       return " ";
     }
-    else{
+    else
+    {
       return firstName;
     }
   }
 
   public String getLastName()
   {
-    if(lastName == null){
+    if (lastName == null)
+    {
       return " ";
     }
-    else{
+    else
+    {
       return lastName;
     }
   }
 
   public String getCGC()
   {
-    if(CGC == null){
+    if (CGC == null)
+    {
       return " ";
     }
-    else{
+    else
+    {
       return CGC;
     }
   }
 
   public String getCremated()
   {
-    if(cremated == null){
+    if (cremated == null)
+    {
       return " ";
     }
-    else{
+    else
+    {
       return cremated;
     }
   }
 
   public String getDateDeceased()
   {
-    if(dateDeceased == null){
+    if (dateDeceased == null)
+    {
       return " ";
     }
-    else{
+    else
+    {
       return dateDeceased;
     }
   }
 
   public String getFoundations()
   {
-    if(foundations == null){
+    if (foundations == null)
+    {
       return " ";
     }
-    else{
+    else
+    {
       return foundations;
     }
   }
 
   public String getGraveNumber()
   {
-    if(graveNumber == null){
+    if (graveNumber == null)
+    {
       return " ";
     }
-    else{
+    else
+    {
       return graveNumber;
     }
   }
 
   public String getIntermentNumber()
   {
-    if(intermentNumber == null){
+    if (intermentNumber == null)
+    {
       return " ";
     }
-    else{
+    else
+    {
       return intermentNumber;
     }
   }
 
   public String getLiner()
   {
-    if (liner == null){
+    if (liner == null)
+    {
       return " ";
     }
-    else{
+    else
+    {
       return liner;
     }
   }
 
   public String getMonument()
   {
-    if(monument == null){
+    if (monument == null)
+    {
       return " ";
     }
-    else{
+    else
+    {
       return monument;
     }
   }
 
   public String getpInt()
   {
-    if(pInt == null){
+    if (pInt == null)
+    {
       return " ";
     }
-    else{
+    else
+    {
       return pInt;
     }
   }
 
   public String getPlanting()
   {
-    if(planting == null){
+    if (planting == null)
+    {
       return " ";
     }
-    else{
+    else
+    {
       return planting;
     }
   }
 
   public String getPlotNumber()
   {
-    if(plotNumber == null){
+    if (plotNumber == null)
+    {
       return " ";
     }
-    else{
+    else
+    {
       return plotNumber;
     }
   }
 
   public String getRMF()
   {
-    if(RMF == null){
+    if (RMF == null)
+    {
       return " ";
     }
-    else{
+    else
+    {
       return RMF;
     }
   }
 
   public String getSection()
   {
-    if(section == null){
+    if (section == null)
+    {
       return " ";
     }
-    else{
+    else
+    {
       return section;
     }
   }
 
   public String getVeteran()
   {
-    if(veteran == null){
+    if (veteran == null)
+    {
       return " ";
     }
-    else{
+    else
+    {
       return veteran;
     }
   }
@@ -206,8 +238,8 @@ public class Entry
    */
   public String toString()
   {
-    return (this.lastName+", "+this.firstName+": "+this.plotNumber+"-"+
-        this.section+"-"+     this.graveNumber+", "+this.intermentNumber
+    return (this.lastName + ", " + this.firstName + ": " + this.plotNumber + "-" +
+        this.section + "-" + this.graveNumber + ", " + this.intermentNumber
         /*this.graveNumber+", "+this.graveNumber+", "+this.graveNumber+", "+
         this.graveNumber+", "+this.graveNumber+", "+this.graveNumber+", "+
         this.graveNumber+", "+this.graveNumber+", "+this.graveNumber+", "+

@@ -2,6 +2,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+
 
 /**
  * Created by brittanyregrut on 11/17/15.
@@ -30,10 +34,10 @@ public class EditEntry extends JDialog
   private JCheckBox plantingBox;
   private JCheckBox veteranBox;
   private JCheckBox crematedBox;
-  private JTextArea linerNotes;
-  private JTextArea CGCNotes;
-  private JTextArea RMFNotes;
-  private JTextArea monumentNotes;
+  private JTextField linerNotes;
+  private JTextField CGCNotes;
+  private JTextField RMFNotes;
+  private JTextField monumentNotes;
   private JButton save;
 
 
@@ -42,7 +46,7 @@ public class EditEntry extends JDialog
    *
    * @param en entry to be displayed for viewing/editing
    */
-  public EditEntry(Entry en)
+  public EditEntry(final Entry en)
   {
     //set basic functionality
     int width = 400, height = 200;
@@ -66,72 +70,57 @@ public class EditEntry extends JDialog
     boolean liner = false;
     String linerText = " ";
     if (en.getLiner().equals("Liner"))
-    {
       liner = true;
-    }
     else
-    {
       linerText = en.getLiner();
-    }
     linerBox = new JCheckBox("Liner?", liner);
-    linerNotes = new JTextArea(linerText);
+    linerNotes = new JTextField(linerText);
 
     //Initialize CGC
     boolean cgc = false;
     String cgcText = " ";
     if (en.getCGC().equals("CGC"))
-    {
       cgc = true;
-    }
     else
-    {
       cgcText = en.getCGC();
-    }
     CGCBox = new JCheckBox("Cemetery Ground Care?", cgc);
-    CGCNotes = new JTextArea(cgcText);
+    CGCNotes = new JTextField(cgcText);
 
     //Initialize RMF
     boolean rmf = false;
     String rmfText = " ";
-    if (en.getRMF().equals("RMF")){
+    if (en.getRMF().equals("RMF"))
       rmf = true;
-    }
     else
-    {
       rmfText = en.getRMF();
-    }
     RMFBox = new JCheckBox("Road Maintenance Fee?", rmf);
-    RMFNotes = new JTextArea(rmfText);
+    RMFNotes = new JTextField(rmfText);
 
     //Initialize Monument
     boolean monument = false;
     String monumentText = " ";
-    if (!(en.getMonument().equals(" "))){
+    if (!(en.getMonument().equals(" ")))
       monument = true;
-      monumentText = en.getMonument();
-    }
+    monumentText = en.getMonument();
     monumentBox = new JCheckBox("Monument?", monument);
-    monumentNotes = new JTextArea(monumentText);
+    monumentNotes = new JTextField(monumentText);
 
     //Initialize Perpetual Planting
     boolean planting = false;
-    if (en.getPlanting().equals("PP")){
+    if (en.getPlanting().equals("PP"))
       planting = true;
-    }
     plantingBox = new JCheckBox("Perpetual Planting?", planting);
 
     //Initialize Veteran
     boolean veteran = false;
-    if (en.getVeteran().equals("Veteran")){
+    if (en.getVeteran().equals("Veteran"))
       veteran = true;
-    }
     veteranBox = new JCheckBox("Veteran?", veteran);
 
     //Initialize Cremated
     boolean cremated = false;
-    if (en.getCremated().equals("Cremated")){
+    if (en.getCremated().equals("Cremated"))
       cremated = true;
-    }
     crematedBox = new JCheckBox("Cremated?", cremated);
 
     //Initialize Button
@@ -172,10 +161,54 @@ public class EditEntry extends JDialog
     pack();
 
     //Action Listener
-    save.addActionListener(new ActionListener() {
+    save.addActionListener(new ActionListener()
+    {
       @Override
-      public void actionPerformed(ActionEvent e) {
-        //Save changes back to database
+      public void actionPerformed(ActionEvent e)
+      {
+        String lastN = lastNameField.getText();
+        String firstN = firstNameField.getText();
+        String date = dateDeceasedField.getText();
+        String section = sectionField.getText();
+        String plot = plotNumberField.getText();
+        String grave = graveNumberField.getText();
+        String intern = intermentNumberField.getText();
+        String notes1 = linerNotes.getText();
+        String notes2 = CGCNotes.getText();
+        String notes3 = RMFNotes.getText();
+        boolean cgc = CGCBox.isSelected();  //CGC
+        boolean rmf = RMFBox.isSelected();  //RMF
+        boolean monument = monumentBox.isSelected();  //Monument
+        boolean planting = plantingBox.isSelected();  //PP
+        boolean liner = linerBox.isSelected();     //Liner
+        boolean vet = veteranBox.isSelected();   //Veteran
+        boolean cremated = crematedBox.isSelected();  //PP
+
+
+        System.out.println(crematedBox);
+
+        try
+        {
+          Class.forName("org.h2.Driver");
+          Connection con = DriverManager.getConnection("jdbc:h2:./h2/cemetery;IFEXISTS=TRUE", "laboon", "bethshalom");
+          Statement stmt = con.createStatement();
+
+          //execute an insert into our DB
+          boolean rs = stmt.execute("UPDATE PLOTS SET DECEASED_LNAME='" + lastN + "', DECEASED_FNAME='" + firstN +
+              "', PLOT_NUMBER='" + plot + "', DATE_DECEASED='" + date + "', SECTION='" + section + "', GRAVE='" + grave +
+              "', INTERMENT_NUMBER='" + intern + "', PN_LINER='" + liner + "', PN_CGC='" + cgc + "', PN_RMF='" + rmf +
+              "', MONUMENT='" + monument + "', PP_PLANTING='" + planting + "', VETERAN='" + vet + "', CREMATED='" + cremated +
+              "', FOUNDATIONS=NULL, NOTES_1='" + notes1 + "', NOTES_2='" + notes2 + "', NOTES_3='" + notes3 +
+              "' WHERE ( DECEASED_FNAME LIKE '" + en.getFirstName() + "' AND DECEASED_LNAME LIKE '" + en.getLastName() +
+              "' AND PLOT_NUMBER LIKE '" + en.getPlotNumber() + "' AND SECTION LIKE '" + en.getSection() + "' AND GRAVE LIKE '" + en.getGraveNumber() + "');");
+
+          stmt.close();
+          con.close();
+        }
+        catch (Exception er)
+        {
+          System.out.println(er.getMessage());
+        }
       }
     });
   }

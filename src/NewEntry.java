@@ -45,6 +45,12 @@ public class NewEntry extends JDialog
   private JLabel cremated = new JLabel("Cremated:");
   private JTextField crematedText;   //text field for cremated
   private JLabel foundations = new JLabel("Foundations:");
+  private JTextField notes1Text;  //text field for first name
+  private JLabel notes1 = new JLabel("Notes:");
+  private JTextField notes2Text;  //text field for first name
+  private JLabel notes2 = new JLabel("Notes:");
+  private JTextField notes3Text;  //text field for first name
+  private JLabel notes3 = new JLabel("Notes:");
   private JButton add;               //button to add entry with text field arguments
   private JButton cancel;            //cancel new entry
 
@@ -58,7 +64,7 @@ public class NewEntry extends JDialog
     Dimension min = new Dimension(width, height);
     setMinimumSize(min);
     setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-    setLayout(new GridLayout(17, 2));
+    setLayout(new GridLayout(20, 2));
     setModal(true);
     //init components
     add = new JButton("Add Entry");
@@ -79,6 +85,11 @@ public class NewEntry extends JDialog
     veteranText = new JTextField();
     crematedText = new JTextField();
     foundationsText = new JTextField();
+    notes1Text = new JTextField();
+    notes2Text = new JTextField();
+    notes3Text = new JTextField();
+
+
     //stylize
     Color backgroundColor = new Color(153, 204, 255); //initialize main color
     Font mainFont = new Font("Serif", Font.PLAIN, 20); //create main font for buttons
@@ -118,6 +129,12 @@ public class NewEntry extends JDialog
     add(crematedText);
     add(foundations);
     add(foundationsText);
+    add(notes1);
+    add(notes1Text);
+    add(notes2);
+    add(notes2Text);
+    add(notes3);
+    add(notes3Text);
     add(add);
     add(cancel);
     pack();
@@ -141,6 +158,9 @@ public class NewEntry extends JDialog
     veteranText.addMouseListener(new textFieldListener());
     crematedText.addMouseListener(new textFieldListener());
     foundationsText.addMouseListener(new textFieldListener());
+    notes1Text.addMouseListener(new textFieldListener());
+    notes2Text.addMouseListener(new textFieldListener());
+    notes3Text.addMouseListener(new textFieldListener());
     add.addActionListener(new addEntryListener());
     cancel.addActionListener(new cancelButtonListener());
   }
@@ -174,6 +194,10 @@ public class NewEntry extends JDialog
       String veteran = veteranText.getText();
       String cremated = crematedText.getText();
       String foundations = foundationsText.getText();
+      String notes1 = notes1Text.getText();
+      String notes2 = notes1Text.getText();
+      String notes3 = notes1Text.getText();
+
 
       if (firstName.equals(""))
       {
@@ -222,8 +246,7 @@ public class NewEntry extends JDialog
         lastName = capitalize(lastName);
 
         //execute an insert into our DB
-        boolean rs = stmt.execute("INSERT INTO PLOTS VALUES ('" + firstName + "'" + "," + "'" + lastName + "'" + "," + plotNumber + "," + "'" + date + "'" + "," + "'" + section + "'" + "," + "'" + grave + "'" + "," + "'" + interment + "'" + "," + "'" + pnint + "'" + "," + "'" + pnliner + "'" + "," + "'" + pncgc + "'" + "," + "'" + pnrmf + "'" + "," + "'" + monument + "'" + "," + "'" + ppplaning + "'" + "," + "'" + veteran + "'" + "," + "'" + cremated + "'" + "," + "'" + foundations + "'" + ")");
-
+        boolean rs = stmt.execute("INSERT INTO PLOTS (DECEASED_FNAME, DECEASED_LNAME, PLOT_NUMBER, DATE_DECEASED, SECTION, GRAVE, INTERMENT_NUMBER, PN_INT, PN_LINER, PN_CGC, PN_RMF, MONUMENT, PP_PLANTING, VETERAN, CREMATED, FOUNDATIONS, NOTES_1, NOTES_2, NOTES_3) VALUES ('" + firstName + "'" + "," + "'" + lastName + "'" + ",'" + plotNumber + "'," + "'" + date + "'" + "," + "'" + section + "'" + "," + "'" + grave + "'" + "," + "'" + interment + "'" + "," + "'" + pnint + "'" + "," + "'" + pnliner + "'" + "," + "'" + pncgc + "'" + "," + "'" + pnrmf + "'" + "," + "'" + monument + "'" + "," + "'" + ppplaning + "'" + "," + "'" + veteran + "'" + "," + "'" + cremated + "'" + "," + "'" + foundations + "'" + ",'" + notes1 + "','" + notes2 + "','" + notes3 + "'" + ");");
         stmt.close();
         con.close();
       }

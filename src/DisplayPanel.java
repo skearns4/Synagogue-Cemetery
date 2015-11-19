@@ -3,7 +3,9 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.*;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -189,12 +191,13 @@ public class DisplayPanel extends JPanel
 
   /**
    * Writes every object that was checked in the table to a newly created textfile
+   *
    * @param checked : an arraylist of DB Entry objects
    */
   public void print(ArrayList<Entry> checked)
   {
     //make sure theyve selected items so we dont create an empty file
-    if(!checked.isEmpty())
+    if (!checked.isEmpty())
     {
       //get the current time/date
       DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH:mm");

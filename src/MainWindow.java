@@ -219,7 +219,7 @@ public class MainWindow extends JPanel
         try // Both first and last name match entry in database
         {
           dp.clear();
-          queryDb("SELECT * FROM PLOTS WHERE DECEASED_FNAME like \'" + firstName + "\' AND DECEASED_LNAME like \'" + lastName + "\'");
+          queryDb("SELECT * FROM PLOTS WHERE DECEASED_FNAME like \'%" + firstName + "%\' AND DECEASED_LNAME like \'%" + lastName + "%\'");
         }
         catch (SQLException e)
         {
@@ -234,7 +234,7 @@ public class MainWindow extends JPanel
         try // Matches entry's first or last name field in database
         {
           dp.clear();
-          queryDb("SELECT * FROM PLOTS WHERE DECEASED_FNAME like \'" + fullName + "\' OR DECEASED_LNAME like \'" + fullName + "\'");
+          queryDb("SELECT * FROM PLOTS WHERE DECEASED_FNAME like \'%" + fullName + "%\' OR DECEASED_LNAME like \'%" + fullName + "%\'");
         }
         catch (SQLException e)
         {
@@ -264,7 +264,7 @@ public class MainWindow extends JPanel
       boolean added = false;
       if (!section.equals(""))
       {
-        query.append("SELECT * FROM PLOTS WHERE SECTION like \'" + section + "\'");
+        query.append("SELECT * FROM PLOTS WHERE SECTION like \'%" + section + "%\'");
         added = true;
       }
       if (!plot.equals(""))
