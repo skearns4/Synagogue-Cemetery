@@ -19,6 +19,7 @@ public class DisplayPanel extends JPanel
   //Model for the table of search results
   private DefaultTableModel model;
 
+
   //Arraylist to hold the entries in the table
   ArrayList<Entry> results = new ArrayList<Entry>();
 
@@ -93,16 +94,19 @@ public class DisplayPanel extends JPanel
     setVisible(true);
 
     //Action listener for the all button to select all entries
+    //Deselect all on 2nd click
     all.addActionListener(new ActionListener()
     {
+      Boolean deselect = false;
       @Override
       public void actionPerformed(ActionEvent e)
       {
-        //Set the value of column 6 to true for every row
-        for (int i = 0; i < searchTable.getRowCount(); i++)
-        {
-          searchTable.setValueAt(true, i, 6);
-        }
+          //Set the value of column 6 to true for every row
+          for (int i = 0; i < searchTable.getRowCount(); i++)
+          {
+            searchTable.setValueAt(true, i, 6);
+          }
+
       }
     });
 

@@ -29,6 +29,14 @@ public class MainWindow extends JPanel
   private JTextField plotField2;
   private JTextField plotField3;
   private JButton plotButton;
+  private JLabel intermentLabel = new JLabel("Search By Interment Number: ");
+  private JTextField intermentField;
+  private JButton intermentButton;
+  private JLabel dateLabel = new JLabel("Search By Date: ");
+  private JTextField dateField;
+  private JButton dateButton;
+  private JPanel intermentPanel;
+  private JPanel datePanel;
 
   /**
    * Constructor for MainWindow
@@ -41,7 +49,7 @@ public class MainWindow extends JPanel
     dp = display;
 
     //Setup SearchPanel
-    setLayout(new GridLayout(4, 1));
+    setLayout(new GridLayout(6, 1));
 
     //Deal with titlePanel
     titlePanel = new JPanel(new GridLayout(2, 1));
@@ -68,6 +76,7 @@ public class MainWindow extends JPanel
     JPanel createButtonPanel = new JPanel();
     createButton.setSize(new Dimension(25,25));
     createButtonPanel.add(createButton);
+    createButtonPanel.setBackground(panelColor);
 
     createPanel.add(createButtonPanel);
     add(createPanel);
@@ -120,6 +129,38 @@ public class MainWindow extends JPanel
     plotPanel.add(plotButton);
     add(plotPanel);
     plotPanel.setVisible(true);
+
+    //Initialize date panel
+    datePanel = new JPanel(new GridLayout(1, 3));
+    datePanel.setBackground(panelColor); // set name panel color
+    dateLabel.setFont(mainFont);//set name label font
+    dateLabel.setHorizontalAlignment(SwingConstants.CENTER); //center name label
+    dateField = new JTextField();
+    dateField.addMouseListener(new fieldListener());
+    dateButton = new JButton("Search!");
+    dateButton.setFont(mainFont); // set name button font
+    dateButton.addActionListener(new nameListener());
+    datePanel.add(dateLabel);
+    datePanel.add(dateField);
+    datePanel.add(dateButton);
+    add(datePanel);
+    datePanel.setVisible(true);
+    
+    //Initialize interment panel
+    intermentPanel = new JPanel(new GridLayout(1, 3));
+    intermentPanel.setBackground(panelColor); // set name panel color
+    intermentLabel.setFont(mainFont);//set name label font
+    intermentLabel.setHorizontalAlignment(SwingConstants.CENTER); //center name label
+    intermentField = new JTextField();
+    intermentField.addMouseListener(new fieldListener());
+    intermentButton = new JButton("Search!");
+    intermentButton.setFont(mainFont); // set name button font
+    intermentButton.addActionListener(new nameListener());
+    intermentPanel.add(intermentLabel);
+    intermentPanel.add(intermentField);
+    intermentPanel.add(intermentButton);
+    add(intermentPanel);
+    intermentPanel.setVisible(true);
   }
 
   /**
