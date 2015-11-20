@@ -156,73 +156,46 @@ public class EditEntry extends JDialog
     add(crematedBox);
     add(save);
     pack();
-    
+
     //Action Listener
     save.addActionListener(new ActionListener()
     {
       @Override
       public void actionPerformed(ActionEvent e)
       {
-        String lastN = lastNameField.getText();
-        String firstN = firstNameField.getText();
-        String date = dateDeceasedField.getText();
+        String lastN   = lastNameField.getText();
+        String firstN  = firstNameField.getText();
+        String date    = dateDeceasedField.getText();
         String section = sectionField.getText();
-        String plot = plotNumberField.getText();
-        String grave = graveNumberField.getText();
-        String intern = intermentNumberField.getText();
-        String notes1 = linerNotes.getText();
-        String notes2 = CGCNotes.getText();
-        String notes3 = RMFNotes.getText();
-        String cgc;
-        if (CGCBox.isSelected()){
-          cgc = "CGC";
-        }
-        else{
-          cgc = " ";
-        }
-        String rmf;
-        if(RMFBox.isSelected()){
-          rmf = "RMF";
-        }
-        else{
-          rmf = " ";
-        }
-        String monument;
-        if (monumentBox.isSelected()){
-          monument = monumentNotes.getText();
-        }
-        else{
-          monument = " ";
-        }
-        String planting;
-        if (plantingBox.isSelected()){
-          planting = "PP";
-        }
-        else{
-          planting = " ";
-        }
-        String liner;
-        if (linerBox.isSelected()){
-          liner = "Liner";
-        }
-        else{
-          liner = " ";
-        }
-        String vet;
-        if (veteranBox.isSelected()){
-          vet = "Veteran";
-        }
-        else{
-          vet = " ";
-        }
-        String cremated;
-        if (crematedBox.isSelected()){
-          cremated = "Cremated";
-        }
-        else{
-          cremated = " ";
-        }
+        String plot    = plotNumberField.getText();
+        String grave   = graveNumberField.getText();
+        String intern  = intermentNumberField.getText();
+        String notes1  = linerNotes.getText();
+        String notes2  = CGCNotes.getText();
+        String notes3  = RMFNotes.getText();
 
+        String cgc      = "";
+        String rmf      = "";
+        String monument = "";
+        String planting = "";
+        String liner    = "";
+        String vet      = "";
+        String cremated = "";
+
+        if (CGCBox.isSelected())
+          cgc = "CGC";
+        if (RMFBox.isSelected())
+          rmf = "RMF";
+        if (monumentBox.isSelected())
+          monument = monumentNotes.getText();
+        if (plantingBox.isSelected())
+          planting = "PP";
+        if (linerBox.isSelected())
+          liner = "Liner";
+        if (veteranBox.isSelected())
+          vet = "Veteran";
+        if (crematedBox.isSelected())
+          cremated = "Cremated";
 
         try
         {
@@ -235,7 +208,7 @@ public class EditEntry extends JDialog
               "', PLOT_NUMBER='" + plot + "', DATE_DECEASED='" + date + "', SECTION='" + section + "', GRAVE='" + grave +
               "', INTERMENT_NUMBER='" + intern + "', PN_LINER='" + liner + "', PN_CGC='" + cgc + "', PN_RMF='" + rmf +
               "', MONUMENT='" + monument + "', PP_PLANTING='" + planting + "', VETERAN='" + vet + "', CREMATED='" + cremated +
-              "', FOUNDATIONS=NULL, LINER_NOTES='" + linerNotes + "', RMF_NOTES='" + RMFNotes + "', CGC_NOTES='" + CGCNotes +
+              "', FOUNDATIONS=NULL, LINER_NOTES='" + liner + "', RMF_NOTES='" + rmf + "', CGC_NOTES='" + cgc +
               "' WHERE ( DECEASED_FNAME LIKE '" + en.getFirstName() + "' AND DECEASED_LNAME LIKE '" + en.getLastName() +
               "' AND PLOT_NUMBER LIKE '" + en.getPlotNumber() + "' AND SECTION LIKE '" + en.getSection() + "' AND GRAVE LIKE '" + en.getGraveNumber() + "');");
 
