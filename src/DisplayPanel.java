@@ -77,7 +77,7 @@ public class DisplayPanel extends JPanel
 
     //Create panel to hold buttons
     JPanel buttonPanel = new JPanel();
-    buttonPanel.setLayout(new GridLayout(1, 3));
+    buttonPanel.setLayout(new GridLayout(1, 4));
 
     //Create new buttons and add to the button panel
     JButton select = new JButton("View Entries");
@@ -89,15 +89,16 @@ public class DisplayPanel extends JPanel
     JButton all = new JButton("Select All");
     buttonPanel.add(all);
 
+    JButton deselectAll = new JButton("Deselect All");
+    buttonPanel.add(deselectAll);
+
     //Add buttons to the display panel
     add(buttonPanel);
     setVisible(true);
 
     //Action listener for the all button to select all entries
-    //Deselect all on 2nd click
     all.addActionListener(new ActionListener()
     {
-      Boolean deselect = false;
       @Override
       public void actionPerformed(ActionEvent e)
       {
@@ -106,6 +107,21 @@ public class DisplayPanel extends JPanel
           {
             searchTable.setValueAt(true, i, 6);
           }
+
+      }
+    });
+
+    //Action listener for the all button to deselect all entries
+    deselectAll.addActionListener(new ActionListener()
+    {
+      @Override
+      public void actionPerformed(ActionEvent e)
+      {
+        //Set the value of column 6 to false for every row
+        for (int i = 0; i < searchTable.getRowCount(); i++)
+        {
+          searchTable.setValueAt(false, i, 6);
+        }
 
       }
     });

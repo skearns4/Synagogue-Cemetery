@@ -347,14 +347,20 @@ public class MainWindow extends JPanel
    * Class housing actionListener for dateButton
    */
   class dateListener implements ActionListener{
+    @Override
+    public void actionPerformed(ActionEvent e) {
 
+    }
   }
 
   /**
    * Class housing actionListener for intermentButton
    */
   class intermentListener implements ActionListener{
+    @Override
+    public void actionPerformed(ActionEvent e) {
 
+    }
   }
 
 
