@@ -48,7 +48,8 @@ public class MainWindow extends JPanel
     dp = display;
 
     //Setup SearchPanel
-    setLayout(new GridLayout(5, 1));
+    //setLayout(new GridLayout(5, 1));
+    setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
     //Deal with titlePanel
     titlePanel = new JPanel(new GridLayout(2, 1));
@@ -110,8 +111,7 @@ public class MainWindow extends JPanel
     plotPanel.add(plotLabel3);
     plotPanel.add(plotField3);
     plotPanel.add(plotButton);
-    add(plotPanel);
-    plotPanel.setVisible(true);
+
 
     //Initialize date panel
     datePanel = new JPanel(new GridLayout(1, 3));
@@ -144,6 +144,9 @@ public class MainWindow extends JPanel
     intermentPanel.add(intermentButton);
     add(intermentPanel);
     intermentPanel.setVisible(true);
+
+    add(plotPanel);
+    plotPanel.setVisible(true);
   }
 
   /**
