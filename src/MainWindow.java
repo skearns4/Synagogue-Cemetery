@@ -353,8 +353,8 @@ public class MainWindow extends JPanel
   /**
    * Class housing actionListener for intermentButton
    */
-  class actionListener implements ActionListener{
-    
+  class intermentListener implements ActionListener{
+
   }
 
 
