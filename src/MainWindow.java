@@ -139,13 +139,13 @@ public class MainWindow extends JPanel
     dateField.addMouseListener(new fieldListener());
     dateButton = new JButton("Search!");
     dateButton.setFont(mainFont); // set name button font
-    dateButton.addActionListener(new nameListener());
+    dateButton.addActionListener(new dateListener());
     datePanel.add(dateLabel);
     datePanel.add(dateField);
     datePanel.add(dateButton);
     add(datePanel);
     datePanel.setVisible(true);
-    
+
     //Initialize interment panel
     intermentPanel = new JPanel(new GridLayout(1, 3));
     intermentPanel.setBackground(panelColor); // set name panel color
@@ -155,7 +155,7 @@ public class MainWindow extends JPanel
     intermentField.addMouseListener(new fieldListener());
     intermentButton = new JButton("Search!");
     intermentButton.setFont(mainFont); // set name button font
-    intermentButton.addActionListener(new nameListener());
+    intermentButton.addActionListener(new intermentListener());
     intermentPanel.add(intermentLabel);
     intermentPanel.add(intermentField);
     intermentPanel.add(intermentButton);
@@ -342,6 +342,23 @@ public class MainWindow extends JPanel
       }
     }
   }
+
+  /**
+   * Class housing actionListener for dateButton
+   */
+  class dateListener implements ActionListener{
+
+  }
+
+  /**
+   * Class housing actionListener for intermentButton
+   */
+  class actionListener implements ActionListener{
+    
+  }
+
+
+
 
   /**
    * A ResultSet is table of data representing a database.
