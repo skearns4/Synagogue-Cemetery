@@ -51,6 +51,8 @@ public class DisplayPanel extends JPanel
           case 5:
             return String.class;
           case 6:
+            return String.class;
+          case 7:
             return Boolean.class;
           default:
             return String.class;
@@ -65,6 +67,7 @@ public class DisplayPanel extends JPanel
     //Add columns with appropriate headings to the table
     model.addColumn("First Name");
     model.addColumn("Last Name");
+    model.addColumn("Interment");
     model.addColumn("Section");
     model.addColumn("Plot Number");
     model.addColumn("Grave Number");
@@ -105,11 +108,11 @@ public class DisplayPanel extends JPanel
       @Override
       public void actionPerformed(ActionEvent e)
       {
-          //Set the value of column 6 to true for every row
-          for (int i = 0; i < searchTable.getRowCount(); i++)
-          {
-            searchTable.setValueAt(true, i, 6);
-          }
+        //Set the value of column 6 to true for every row
+        for (int i = 0; i < searchTable.getRowCount(); i++)
+        {
+          searchTable.setValueAt(true, i, 7);
+        }
 
       }
     });
@@ -123,7 +126,7 @@ public class DisplayPanel extends JPanel
         //Set the value of column 6 to false for every row
         for (int i = 0; i < searchTable.getRowCount(); i++)
         {
-          searchTable.setValueAt(false, i, 6);
+          searchTable.setValueAt(false, i, 7);
         }
 
       }
@@ -140,7 +143,7 @@ public class DisplayPanel extends JPanel
 
         for (int i = 0; i < searchTable.getRowCount(); i++)
         {
-          Boolean checked = Boolean.valueOf(searchTable.getValueAt(i, 6).toString());
+          Boolean checked = Boolean.valueOf(searchTable.getValueAt(i, 7).toString());
 
           //print each selected entry to a text file
           if (checked)
@@ -162,7 +165,7 @@ public class DisplayPanel extends JPanel
         //determine if a row is selected
         for (int i = 0; i < searchTable.getRowCount(); i++)
         {
-          Boolean checked = Boolean.valueOf(searchTable.getValueAt(i, 6).toString());
+          Boolean checked = Boolean.valueOf(searchTable.getValueAt(i, 7).toString());
 
           //display an entry view/edit box for each selected entry
           if (checked)
@@ -199,17 +202,18 @@ public class DisplayPanel extends JPanel
    * @param num number of rows
    * @param en  Entry object of the result being added
    */
-  public void add(String fn, String ln, String sn, String pn, String gn, String d, int num, Entry en)
+  public void add(String fn, String ln, String in, String sn, String pn, String gn, String d, int num, Entry en)
   {
     results.add(num, en); // Add the full entry data to the arraylist
     model.addRow(new Object[0]);
     model.setValueAt(fn, num, 0);
     model.setValueAt(ln, num, 1);
-    model.setValueAt(sn, num, 2);
-    model.setValueAt(pn, num, 3);
-    model.setValueAt(gn, num, 4);
-    model.setValueAt(d, num, 5);
-    model.setValueAt(false, num, 6);
+    model.setValueAt(in, num, 2);
+    model.setValueAt(sn, num, 3);
+    model.setValueAt(pn, num, 4);
+    model.setValueAt(gn, num, 5);
+    model.setValueAt(d, num, 6);
+    model.setValueAt(false, num, 7);
     updateUI();
   }
 

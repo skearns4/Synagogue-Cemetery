@@ -163,23 +163,23 @@ public class EditEntry extends JDialog
       @Override
       public void actionPerformed(ActionEvent e)
       {
-        String lastN   = lastNameField.getText();
-        String firstN  = firstNameField.getText();
-        String date    = dateDeceasedField.getText();
+        String lastN = lastNameField.getText();
+        String firstN = firstNameField.getText();
+        String date = dateDeceasedField.getText();
         String section = sectionField.getText();
-        String plot    = plotNumberField.getText();
-        String grave   = graveNumberField.getText();
-        String intern  = intermentNumberField.getText();
-        String notes1  = linerNotes.getText();
-        String notes2  = CGCNotes.getText();
-        String notes3  = RMFNotes.getText();
+        String plot = plotNumberField.getText();
+        String grave = graveNumberField.getText();
+        String intern = intermentNumberField.getText();
+        String notes1 = linerNotes.getText();
+        String notes2 = CGCNotes.getText();
+        String notes3 = RMFNotes.getText();
 
-        String cgc      = "";
-        String rmf      = "";
+        String cgc = "";
+        String rmf = "";
         String monument = "";
         String planting = "";
-        String liner    = "";
-        String vet      = "";
+        String liner = "";
+        String vet = "";
         String cremated = "";
 
         if (CGCBox.isSelected())
@@ -219,6 +219,8 @@ public class EditEntry extends JDialog
         {
           System.out.println(er.getMessage());
         }
+        setVisible(false);
+        dispose();
       }
     });
   }

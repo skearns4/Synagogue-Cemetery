@@ -241,19 +241,23 @@ public class Entry
     }
   }
 
-  public String getMonumentNotes() {
+  public String getMonumentNotes()
+  {
     return monumentNotes;
   }
 
-  public String getCgcNotes() {
+  public String getCgcNotes()
+  {
     return cgcNotes;
   }
 
-  public String getRmfNotes() {
+  public String getRmfNotes()
+  {
     return rmfNotes;
   }
 
-  public String getLinerNotes() {
+  public String getLinerNotes()
+  {
     return linerNotes;
   }
 

@@ -339,9 +339,35 @@ public class MainWindow extends JPanel
   /**
    * Class housing actionListener for dateButton
    */
-  class dateListener implements ActionListener{
+  class dateListener implements ActionListener
+  {
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e)
+    {
+      String date = dateField.getText();
+      String query = "SELECT * FROM PLOTS WHERE DATE_DECEASED like '" + date + "'";
+
+      if (date.charAt(0) == '>')
+      {
+        date = date.substring(1);
+        query = "SELECT * FROM PLOTS WHERE DATE_DECEASED > '" + date + "'";
+      }
+      else if (date.charAt(0) == '<')
+      {
+        date = date.substring(1);
+        query = "SELECT * FROM PLOTS WHERE DATE_DECEASED < '" + date + "'";
+      }
+      else ;
+
+      try // Search for plot number
+      {
+        dp.clear();
+        queryDb(query);
+      }
+      catch (SQLException er)
+      {
+        er.printStackTrace();
+      }
 
     }
   }
@@ -349,14 +375,24 @@ public class MainWindow extends JPanel
   /**
    * Class housing actionListener for intermentButton
    */
-  class intermentListener implements ActionListener{
+  class intermentListener implements ActionListener
+  {
     @Override
-    public void actionPerformed(ActionEvent e) {
-
+    public void actionPerformed(ActionEvent e)
+    {
+      String inter = intermentField.getText();
+      String query = "SELECT * FROM PLOTS WHERE UPPER(INTERMENT_NUMBER) like UPPER('" + inter + "')";
+      try // Search for plot number
+      {
+        dp.clear();
+        queryDb(query);
+      }
+      catch (SQLException er)
+      {
+        er.printStackTrace();
+      }
     }
   }
-
-
 
 
   /**
@@ -452,7 +488,7 @@ public class MainWindow extends JPanel
 
         //Create a new entry object for this result
         Entry en = new Entry(fname, lname, plotNum, date, sectionNum, graveNum, intermentNumber, pInt, liner, CGC, RMF, monument, planting, veteran, cremated, foundations, monumentNotes, cgcNotes, rmfNotes, linerNotes);
-        dp.add(fname, lname, sectionNum, plotNum, graveNum, date, i, en); //add the current result to the table data
+        dp.add(fname, lname, intermentNumber, sectionNum, plotNum, graveNum, date, i, en); //add the current result to the table data
         i++; //increment the row in the table so if multiple results returned, each is displayed in a new row
       }
       stmt.close();

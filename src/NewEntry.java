@@ -304,6 +304,8 @@ public class NewEntry extends JDialog
       {
         System.out.println(er.getMessage());
       }
+      setVisible(false);
+      dispose();
     }
   }
 
