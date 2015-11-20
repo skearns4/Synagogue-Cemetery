@@ -72,12 +72,12 @@ public class DisplayPanel extends JPanel
     model.addColumn("Select Entry");
 
     //Add the table to the display panel
-    setLayout(new GridLayout(2, 1));
+    setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
     add(new JScrollPane(searchTable));
 
     //Create panel to hold buttons
     JPanel buttonPanel = new JPanel();
-    buttonPanel.setLayout(new GridLayout(1, 4));
+    buttonPanel.setLayout(new GridLayout(1, 5));
 
     //Create new buttons and add to the button panel
     JButton select = new JButton("View Entries");
@@ -91,6 +91,9 @@ public class DisplayPanel extends JPanel
 
     JButton deselectAll = new JButton("Deselect All");
     buttonPanel.add(deselectAll);
+
+    JButton createButton = new JButton("Create New Entry");
+    buttonPanel.add(createButton);
 
     //Add buttons to the display panel
     add(buttonPanel);
@@ -169,6 +172,16 @@ public class DisplayPanel extends JPanel
             edit.setVisible(true);
           }
         }
+      }
+    });
+
+    createButton.addActionListener(new ActionListener()
+    {
+      @Override
+      public void actionPerformed(ActionEvent e)
+      {
+        NewEntry entry = new NewEntry();
+        entry.setVisible(true);
       }
     });
   }

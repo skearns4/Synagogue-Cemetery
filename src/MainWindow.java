@@ -16,7 +16,6 @@ public class MainWindow extends JPanel
   private JLabel mainHeading = new JLabel("Beth Shalom Synagogue");
   private JLabel subHeading = new JLabel("Cemetery Management System");
   private JPanel createPanel;
-  private JButton createButton;
   private JPanel namePanel;
   private JLabel nameLabel;
   private JTextField nameField;
@@ -49,7 +48,7 @@ public class MainWindow extends JPanel
     dp = display;
 
     //Setup SearchPanel
-    setLayout(new GridLayout(6, 1));
+    setLayout(new GridLayout(5, 1));
 
     //Deal with titlePanel
     titlePanel = new JPanel(new GridLayout(2, 1));
@@ -65,24 +64,8 @@ public class MainWindow extends JPanel
     titlePanel.add(subHeading);
     add(titlePanel);
 
-    //Initialize createPanel
-    createPanel = new JPanel(new GridLayout(1, 1));
-    createPanel.setBackground(panelColor);// set create panel color
-    Font mainFont = new Font("Serif", Font.PLAIN, 20); //create main font for buttons, etc
-    createButton = new JButton("Create New Entry");
-    createButton.addActionListener(new createListener());
-    createButton.setFont(mainFont); //set create button font
-
-    JPanel createButtonPanel = new JPanel();
-    createButton.setSize(new Dimension(25,25));
-    createButtonPanel.add(createButton);
-    createButtonPanel.setBackground(panelColor);
-
-    createPanel.add(createButtonPanel);
-    add(createPanel);
-    createPanel.setVisible(true);
-
     //Initialize namePanel
+    Font mainFont = new Font("Serif", Font.PLAIN, 20); //create main font for buttons, etc
     namePanel = new JPanel(new GridLayout(1, 3));
     namePanel.setBackground(panelColor); // set name panel color
     nameLabel = new JLabel("Search By Name:");
