@@ -71,7 +71,7 @@ public class MainWindow extends JPanel
     namePanel.setBackground(panelColor); // set name panel color
     nameLabel = new JLabel("Search By Name:");
     nameLabel.setFont(mainFont);//set name label font
-    nameLabel.setHorizontalAlignment(SwingConstants.CENTER); //center name label
+    nameLabel.setHorizontalAlignment(SwingConstants.RIGHT); //center name label
     nameField = new JTextField();
     nameField.addMouseListener(new fieldListener());
     nameButton = new JButton("Search!");
@@ -84,17 +84,11 @@ public class MainWindow extends JPanel
     namePanel.setVisible(true);
 
     //Initialize plotPanel
-    plotPanel = new JPanel(new GridLayout(1, 7));
+    plotPanel = new JPanel(new GridLayout(1, 3));
     plotPanel.setBackground(panelColor);//set plot panel color
-    plotLabel1 = new JLabel("Section:");
+    plotLabel1 = new JLabel("Search By Section-Plot-Grave: ");
     plotLabel1.setFont(mainFont);//set plot label font
-    plotLabel1.setHorizontalAlignment(SwingConstants.CENTER); //center plot label
-    plotLabel2 = new JLabel("Plot:");
-    plotLabel2.setFont(mainFont);//set plot label font
-    plotLabel2.setHorizontalAlignment(SwingConstants.CENTER); //center plot label
-    plotLabel3 = new JLabel("Grave:");
-    plotLabel3.setFont(mainFont);//set plot label font
-    plotLabel3.setHorizontalAlignment(SwingConstants.CENTER); //center plot label
+    plotLabel1.setHorizontalAlignment(SwingConstants.RIGHT); //center plot label
     plotField1 = new JTextField();
     plotField1.addMouseListener(new fieldListener());
     plotField2 = new JTextField();
@@ -104,12 +98,22 @@ public class MainWindow extends JPanel
     plotButton = new JButton("Search!");
     plotButton.setFont(mainFont); // set plot button font
     plotButton.addActionListener(new plotListener());
+
     plotPanel.add(plotLabel1);
-    plotPanel.add(plotField1);
-    plotPanel.add(plotLabel2);
-    plotPanel.add(plotField2);
-    plotPanel.add(plotLabel3);
-    plotPanel.add(plotField3);
+    plotPanel.setPreferredSize(new Dimension(400, 32));
+    plotField1.setPreferredSize(new Dimension(89, 42));
+    plotField2.setPreferredSize(new Dimension(88, 42));
+    plotField3.setPreferredSize(new Dimension(89, 42));
+
+    JPanel plotFieldPanel = new JPanel();
+    plotFieldPanel.setBackground(panelColor);
+    plotFieldPanel.setAlignmentY(SwingConstants.TOP);
+    plotField1.setAlignmentY(SwingConstants.TOP);
+    plotFieldPanel.add(plotField1);
+    plotFieldPanel.add(plotField2);
+    plotFieldPanel.add(plotField3);
+    plotPanel.add(plotFieldPanel);
+
     plotPanel.add(plotButton);
 
 
@@ -117,7 +121,7 @@ public class MainWindow extends JPanel
     datePanel = new JPanel(new GridLayout(1, 3));
     datePanel.setBackground(panelColor); // set name panel color
     dateLabel.setFont(mainFont);//set name label font
-    dateLabel.setHorizontalAlignment(SwingConstants.CENTER); //center name label
+    dateLabel.setHorizontalAlignment(SwingConstants.RIGHT); //center name label
     dateField = new JTextField();
     dateField.addMouseListener(new fieldListener());
     dateButton = new JButton("Search!");
@@ -133,7 +137,7 @@ public class MainWindow extends JPanel
     intermentPanel = new JPanel(new GridLayout(1, 3));
     intermentPanel.setBackground(panelColor); // set name panel color
     intermentLabel.setFont(mainFont);//set name label font
-    intermentLabel.setHorizontalAlignment(SwingConstants.CENTER); //center name label
+    intermentLabel.setHorizontalAlignment(SwingConstants.RIGHT); //center name label
     intermentField = new JTextField();
     intermentField.addMouseListener(new fieldListener());
     intermentButton = new JButton("Search!");
@@ -235,42 +239,45 @@ public class MainWindow extends JPanel
       String fullName = nameField.getText();
       fullName = fullName.toLowerCase();
 
-      if (fullName.contains(" "))
+      if (fullName.length() > 0)
       {
-        // Split name if contains spaces - has a first and last name
-        String[] splitStr = fullName.split("\\s");
-
-        //set separate strings for first and last name
-        String firstName = splitStr[0];
-        String lastName = splitStr[1];
-
-        //clean up input to make first char of string uppercase
-        firstName = capitalize(firstName);
-        lastName = capitalize(lastName);
-
-        try // Both first and last name match entry in database
+        if (fullName.contains(" "))
         {
-          dp.clear();
-          queryDb("SELECT * FROM PLOTS WHERE DECEASED_FNAME like \'%" + firstName + "%\' AND DECEASED_LNAME like \'%" + lastName + "%\'");
+          // Split name if contains spaces - has a first and last name
+          String[] splitStr = fullName.split("\\s");
+
+          //set separate strings for first and last name
+          String firstName = splitStr[0];
+          String lastName = splitStr[1];
+
+          //clean up input to make first char of string uppercase
+          firstName = capitalize(firstName);
+          lastName = capitalize(lastName);
+
+          try // Both first and last name match entry in database
+          {
+            dp.clear();
+            queryDb("SELECT * FROM PLOTS WHERE DECEASED_FNAME like \'%" + firstName + "%\' AND DECEASED_LNAME like \'%" + lastName + "%\'");
+          }
+          catch (SQLException e)
+          {
+            e.printStackTrace();
+          }
         }
-        catch (SQLException e)
+        else // Is only a first or only a last name
         {
-          e.printStackTrace();
-        }
-      }
-      else // Is only a first or only a last name
-      {
-        //clean up input to make first char of string uppercase
-        fullName = capitalize(fullName);
+          //clean up input to make first char of string uppercase
+          fullName = capitalize(fullName);
 
-        try // Matches entry's first or last name field in database
-        {
-          dp.clear();
-          queryDb("SELECT * FROM PLOTS WHERE DECEASED_FNAME like \'%" + fullName + "%\' OR DECEASED_LNAME like \'%" + fullName + "%\'");
-        }
-        catch (SQLException e)
-        {
-          e.printStackTrace();
+          try // Matches entry's first or last name field in database
+          {
+            dp.clear();
+            queryDb("SELECT * FROM PLOTS WHERE DECEASED_FNAME like \'%" + fullName + "%\' OR DECEASED_LNAME like \'%" + fullName + "%\'");
+          }
+          catch (SQLException e)
+          {
+            e.printStackTrace();
+          }
         }
       }
     }
