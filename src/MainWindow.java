@@ -241,7 +241,7 @@ public class MainWindow extends JPanel
 
       if (fullName.length() > 0)
       {
-        if (fullName.contains(" "))
+        if (fullName.contains(" ") && fullName.split("\\s")[1].length()>0)
         {
           // Split name if contains spaces - has a first and last name
           String[] splitStr = fullName.split("\\s");
