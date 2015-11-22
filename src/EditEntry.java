@@ -205,7 +205,7 @@ public class EditEntry extends JDialog
 
           //execute an insert into our DB
 
-          if (Objects.equals(date, " ")) // Special case when the date is empty
+          if (Objects.equals(date, " ") || Objects.equals(date, "")) // Special case when the date is empty
 		  { 
             boolean rs = stmt.execute("UPDATE PLOTS SET DECEASED_LNAME='" + lastN + "', DECEASED_FNAME='" + firstN +
                     "', PLOT_NUMBER='" + plot + "', DATE_DECEASED=NULL , SECTION='" + section + "', GRAVE='" + grave +
