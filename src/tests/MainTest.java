@@ -176,4 +176,126 @@ public class MainTest
   }
 
 
+  /*
+      Unit test that checks that there is an internment number 5133
+   */
+  @Test
+  public void testIntermentNumber5133()
+  {
+    int numEntries = 0;
+
+    try // Search for valid interment number
+    {
+      numEntries = MainWindow.queryDb("SELECT * FROM PLOTS WHERE INTERMENT_NUMBER like \'" + 5133 + "\'");
+    }
+    catch (SQLException e)
+    {
+      e.printStackTrace();
+    }
+
+    assertTrue(numEntries > 0); // Should be an entry
+  }
+
+
+  /*
+      Unit test that checks that there is not an interment number 0
+   */
+  @Test
+  public void testIntermentNumberZero()
+  {
+    int numEntries = 0;
+
+    try // Search for illegal interment number
+    {
+      numEntries = MainWindow.queryDb("SELECT * FROM PLOTS WHERE INTERMENT_NUMBER like \'" + 0 + "\'");
+    }
+    catch (SQLException e)
+    {
+      e.printStackTrace();
+    }
+
+    assertFalse(numEntries > 0); // Should not be an entry
+  }
+
+  /*
+      Unit test that checks that there is not a negative interment number (-1)
+   */
+  @Test
+  public void testIntermentNumberNegative()
+  {
+    int numEntries = 0;
+
+    try // Search for illegal interment number
+    {
+      numEntries = MainWindow.queryDb("SELECT * FROM PLOTS WHERE INTERMENT_NUMBER like \'" + -1 + "\'");
+    }
+    catch (SQLException e)
+    {
+      e.printStackTrace();
+    }
+
+    assertFalse(numEntries > 0); // Should not be an entry
+  }
+
+  /*
+     Unit test that checks that there is a grave number 1
+  */
+  @Test
+  public void testGraveNumber1()
+  {
+    int numEntries = 0;
+
+    try // Search for valid grave number
+    {
+      numEntries = MainWindow.queryDb("SELECT * FROM PLOTS WHERE GRAVE like \'" + 1 + "\'");
+    }
+    catch (SQLException e)
+    {
+      e.printStackTrace();
+    }
+
+    assertTrue(numEntries > 0); // Should be an entry
+  }
+
+
+  /*
+      Unit test that checks that there is a grave number 0
+   */
+  @Test
+  public void testGraveNumberZero()
+  {
+    int numEntries = 0;
+
+    try // Search for illegal interment number
+    {
+      numEntries = MainWindow.queryDb("SELECT * FROM PLOTS WHERE GRAVE like \'" + 0 + "\'");
+    }
+    catch (SQLException e)
+    {
+      e.printStackTrace();
+    }
+
+    assertTrue(numEntries > 0); // Should not be an entry
+  }
+
+  /*
+      Unit test that checks that there is not a negative grave number (-1)
+   */
+  @Test
+  public void testGraveNumberNegative()
+  {
+    int numEntries = 0;
+
+    try // Search for illegal interment number
+    {
+      numEntries = MainWindow.queryDb("SELECT * FROM PLOTS WHERE GRAVE like \'" + -1 + "\'");
+    }
+    catch (SQLException e)
+    {
+      e.printStackTrace();
+    }
+
+    assertFalse(numEntries > 0); // Should not be an entry
+  }
+
 }
