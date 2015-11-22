@@ -237,7 +237,7 @@ public class DisplayPanel extends JPanel
     if (!checked.isEmpty())
     {
       //get the current time/date
-      DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH:mm");
+      DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH_mm");
       try
       {
         //new file. name it the date + time
