@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
+import java.util.Objects;
 
 
 /**
@@ -197,21 +198,34 @@ public class EditEntry extends JDialog
         if (crematedBox.isSelected())
           cremated = "Cremated";
 
-        try
-        {
+        try {
           Class.forName("org.h2.Driver");
           Connection con = DriverManager.getConnection("jdbc:h2:./h2/cemetery;IFEXISTS=TRUE", "laboon", "bethshalom");
           Statement stmt = con.createStatement();
 
           //execute an insert into our DB
-          boolean rs = stmt.execute("UPDATE PLOTS SET DECEASED_LNAME='" + lastN + "', DECEASED_FNAME='" + firstN +
-              "', PLOT_NUMBER='" + plot + "', DATE_DECEASED='" + date + "', SECTION='" + section + "', GRAVE='" + grave +
-              "', INTERMENT_NUMBER='" + intern + "', PN_LINER='" + liner + "', PN_CGC='" + cgc + "', PN_RMF='" + rmf +
-              "', MONUMENT='" + monument + "', PP_PLANTING='" + planting + "', VETERAN='" + vet + "', CREMATED='" + cremated +
-              "', FOUNDATIONS=NULL, LINER_NOTES='" + liner + "', RMF_NOTES='" + rmf + "', CGC_NOTES='" + cgc +
-              "' WHERE ( DECEASED_FNAME LIKE '" + en.getFirstName() + "' AND DECEASED_LNAME LIKE '" + en.getLastName() +
-              "' AND PLOT_NUMBER LIKE '" + en.getPlotNumber() + "' AND SECTION LIKE '" + en.getSection() + "' AND GRAVE LIKE '" + en.getGraveNumber() + "');");
 
+          if (Objects.equals(date, " ")) // Special case when the date is empty
+		  { 
+            boolean rs = stmt.execute("UPDATE PLOTS SET DECEASED_LNAME='" + lastN + "', DECEASED_FNAME='" + firstN +
+                    "', PLOT_NUMBER='" + plot + "', DATE_DECEASED=NULL , SECTION='" + section + "', GRAVE='" + grave +
+                    "', INTERMENT_NUMBER='" + intern + "', PN_LINER='" + liner + "', PN_CGC='" + cgc + "', PN_RMF='" + rmf +
+                    "', MONUMENT='" + monument + "', PP_PLANTING='" + planting + "', VETERAN='" + vet + "', CREMATED='" + cremated +
+                    "', FOUNDATIONS=NULL, LINER_NOTES='" + liner + "', RMF_NOTES='" + rmf + "', CGC_NOTES='" + cgc +
+                    "' WHERE ( DECEASED_FNAME LIKE '" + en.getFirstName() + "' AND DECEASED_LNAME LIKE '" + en.getLastName() +
+                    "' AND PLOT_NUMBER LIKE '" + en.getPlotNumber() + "' AND SECTION LIKE '" + en.getSection() + "' AND GRAVE LIKE '" + en.getGraveNumber() + "');");
+
+          } 
+		  else 
+		  {
+            boolean rs = stmt.execute("UPDATE PLOTS SET DECEASED_LNAME='" + lastN + "', DECEASED_FNAME='" + firstN +
+                    "', PLOT_NUMBER='" + plot + "', DATE_DECEASED='" + date + "', SECTION='" + section + "', GRAVE='" + grave +
+                    "', INTERMENT_NUMBER='" + intern + "', PN_LINER='" + liner + "', PN_CGC='" + cgc + "', PN_RMF='" + rmf +
+                    "', MONUMENT='" + monument + "', PP_PLANTING='" + planting + "', VETERAN='" + vet + "', CREMATED='" + cremated +
+                    "', FOUNDATIONS=NULL, LINER_NOTES='" + liner + "', RMF_NOTES='" + rmf + "', CGC_NOTES='" + cgc +
+                    "' WHERE ( DECEASED_FNAME LIKE '" + en.getFirstName() + "' AND DECEASED_LNAME LIKE '" + en.getLastName() +
+                    "' AND PLOT_NUMBER LIKE '" + en.getPlotNumber() + "' AND SECTION LIKE '" + en.getSection() + "' AND GRAVE LIKE '" + en.getGraveNumber() + "');");
+          }
           stmt.close();
           con.close();
         }
