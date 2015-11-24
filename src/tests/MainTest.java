@@ -6,15 +6,15 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 /*
-    Unit tests for our implemented user stories
+    Unit tests for our user stories
     Had to adapt because JUnit is not really designed for GUIs
-    Most of these tests rely on our currently existing database and will need to be updated when the real database is created
-    For example, one test searches for "Mary", which exists in our current database but may not in our final database
+    Most of these tests rely on the existing database
+    For example, one test searches for "Anna", which we know exists in the database
  */
 public class MainTest
 {
   /*
-     Unit test that checks that there is an entry with the first name of Mary
+     Unit test that checks that there is an entry with the first name of Anna
   */
   @Test
   public void testFirstNameAnna()
@@ -23,7 +23,7 @@ public class MainTest
 
     try // Search for valid first name
     {
-      numEntries = MainWindow.queryDb("SELECT * FROM PLOTS WHERE DECEASED_FNAME like \'" + "Anna" + "\' OR DECEASED_LNAME like \'" + "Mary" + "\'");
+      numEntries = MainWindow.queryDb("SELECT * FROM PLOTS WHERE DECEASED_FNAME like \'" + "Anna" + "\' OR DECEASED_LNAME like \'" + "Anna" + "\'");
     }
     catch (SQLException e)
     {
@@ -35,7 +35,7 @@ public class MainTest
 
 
   /*
-     Unit test that checks that there is an entry with the last name of Sanders
+     Unit test that checks that there is an entry with the last name of Aaron
   */
   @Test
   public void testLastNameAaron()
@@ -44,7 +44,7 @@ public class MainTest
 
     try // Search for valid last name
     {
-      numEntries = MainWindow.queryDb("SELECT * FROM PLOTS WHERE DECEASED_FNAME like \'" + "Aaron" + "\' OR DECEASED_LNAME like \'" + "Mary" + "\'");
+      numEntries = MainWindow.queryDb("SELECT * FROM PLOTS WHERE DECEASED_FNAME like \'" + "Aaron" + "\' OR DECEASED_LNAME like \'" + "Aaron" + "\'");
     }
     catch (SQLException e)
     {
@@ -55,7 +55,7 @@ public class MainTest
   }
 
   /*
-     Unit test that checks that there is an entry with the full name of Mary Sanders
+     Unit test that checks that there is an entry with the full name of Anna Aaron
   */
   @Test
   public void testFullNameAnnaAaron()
@@ -95,16 +95,16 @@ public class MainTest
   }
 
   /*
-     Unit test that checks that there is not an entry with the full name of Invalid Sanders
+     Unit test that checks that there is not an entry with the full name of Invalid Aaron
   */
   @Test
-  public void testFullNameInvalidSanders()
+  public void testFullNameInvalidAaron()
   {
     int numEntries = 0;
 
     try // Search for illegal full name
     {
-      numEntries = MainWindow.queryDb("SELECT * FROM PLOTS WHERE DECEASED_FNAME like \'" + "Invalid" + "\' AND DECEASED_LNAME like \'" + "Sanders" + "\'");
+      numEntries = MainWindow.queryDb("SELECT * FROM PLOTS WHERE DECEASED_FNAME like \'" + "Invalid" + "\' AND DECEASED_LNAME like \'" + "Aaron" + "\'");
     }
     catch (SQLException e)
     {
@@ -266,7 +266,7 @@ public class MainTest
   {
     int numEntries = 0;
 
-    try // Search for illegal interment number
+    try // Search for valid grave number
     {
       numEntries = MainWindow.queryDb("SELECT * FROM PLOTS WHERE GRAVE like \'" + 0 + "\'");
     }
@@ -275,7 +275,7 @@ public class MainTest
       e.printStackTrace();
     }
 
-    assertTrue(numEntries > 0); // Should not be an entry
+    assertTrue(numEntries > 0); // Should be an entry
   }
 
   /*
@@ -286,7 +286,7 @@ public class MainTest
   {
     int numEntries = 0;
 
-    try // Search for illegal interment number
+    try // Search for illegal grave number
     {
       numEntries = MainWindow.queryDb("SELECT * FROM PLOTS WHERE GRAVE like \'" + -1 + "\'");
     }

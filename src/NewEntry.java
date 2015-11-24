@@ -228,7 +228,7 @@ public class NewEntry extends JDialog
       }
       else
       {
-        //TODO error handling for first name
+        //Error handling for first name not implemented
       }
       if (lastName.equals(""))
       {
@@ -237,7 +237,7 @@ public class NewEntry extends JDialog
       }
       else
       {
-        //TODO error handling for last name
+        //Error handling for last name not implemented
       }
       if (plotNumber.equals(""))
       {
@@ -246,7 +246,7 @@ public class NewEntry extends JDialog
       }
       else
       {
-        //TODO error handling for plot
+        //Error handling for plot not implemented
       }
       if (date.equals(""))
       {
@@ -254,7 +254,7 @@ public class NewEntry extends JDialog
       }
       else if (dateText.getForeground() == Color.BLACK)
       {
-        //TODO error handling for date
+        //Error handling for date not implemented
       }
       try
       {
@@ -267,8 +267,6 @@ public class NewEntry extends JDialog
         lastName = capitalize(lastName);
 
         //execute an insert into our DB
-        //ADD MONUMENT_NOTES AND MNOTES TO THIS STATEMENT
-        //REMOVE FOUNDATIONS AND PNINT (don't have a clue what these mean so deleted)
         if (!date.equals(""))
         {
           boolean rs = stmt.execute("" +

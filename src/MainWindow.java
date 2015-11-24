@@ -48,7 +48,6 @@ public class MainWindow extends JPanel
     dp = display;
 
     //Setup SearchPanel
-    //setLayout(new GridLayout(5, 1));
     setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
     //Deal with titlePanel
@@ -66,7 +65,7 @@ public class MainWindow extends JPanel
     add(titlePanel);
 
     //Initialize namePanel
-    Font mainFont = new Font("Serif", Font.PLAIN, 20); //create main font for buttons, etc
+    Font mainFont = new Font("Serif", Font.PLAIN, 20); //create main font for buttons, etc.
     namePanel = new JPanel(new GridLayout(1, 3));
     namePanel.setBackground(panelColor); // set name panel color
     nameLabel = new JLabel("Search By Name:");
@@ -448,12 +447,10 @@ public class MainWindow extends JPanel
     {
       //establishes connection to our DB
       Class.forName("org.h2.Driver");
-      //totally should not have password in plain text...
       Connection con = DriverManager.getConnection("jdbc:h2:./h2/cemetery;IFEXISTS=TRUE", "laboon", "bethshalom");
       Statement stmt = con.createStatement();
 
-      //sql statement to collect all the data in a certain row where the first name
-      //matches whatever entered into s
+      //sql statement to collect all the data in a certain row where the first name matches whatever entered into s
       ResultSet rs = stmt.executeQuery(query);
 
       //i is a counter for number of results in resultset
@@ -463,8 +460,7 @@ public class MainWindow extends JPanel
       {
         numEntries++; // Increment number of entries
 
-        //tokenizes the results of select statement into individual strings corresponding
-        //to their columns
+        //tokenizes the results of select statement into individual strings corresponding to their columns
         String fname = rs.getString("DECEASED_FNAME");
         String lname = rs.getString("DECEASED_LNAME");
         String plotNum = rs.getString("PLOT_NUMBER");

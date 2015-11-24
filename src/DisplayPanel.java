@@ -227,13 +227,13 @@ public class DisplayPanel extends JPanel
   }
 
   /**
-   * Writes every object that was checked in the table to a newly created textfile
+   * Writes every object that was checked in the table to a newly created text file
    *
-   * @param checked : an arraylist of DB Entry objects
+   * @param checked : an Array:ist of DB Entry objects
    */
   public void print(ArrayList<Entry> checked)
   {
-    //make sure theyve selected items so we dont create an empty file
+    //Make sure they've selected items so we don't create an empty file
     if (!checked.isEmpty())
     {
       //get the current time/date
@@ -252,7 +252,6 @@ public class DisplayPanel extends JPanel
         //close file
         writer.close();
       }
-      //for some reason java made me do this even though it's creating a new file...
       catch (FileNotFoundException e)
       {
         e.printStackTrace();
